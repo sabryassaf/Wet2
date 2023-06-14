@@ -4,12 +4,15 @@
 #include "utilesWet2.h"
 #include "RankTree.h"
 #include "Customer.h"
+#include "HashTable.h"
+#include "UnionFind.h"
 
 class RecordsCompany
 {
 private:
 
-    RankTree<int, Customer *> m_VIPCustomers;
+    HashTable<int, Customer *> m_VIPCustomers;
+
 
     StatusType addPrizeAUX(int c_id, double amount, AVLNode<int, Customer*> *node, int condition);
 

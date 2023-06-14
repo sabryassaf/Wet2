@@ -7,7 +7,7 @@
 
 #include <iostream>
 #include "AVLNode.h"
-
+#include "utilesWet2.h"
 
 
 template<class Key, class Data>
@@ -35,8 +35,10 @@ private:
 
     AVLNode<Key, Data> *UpdateAndBalance(AVLNode<Key, Data> *node);
 
-
     void ReverseInOrderArrayAux(AVLNode<Key, Data> *node, Data *InOrderArray, int *index);
+
+    AVLNode<Key,Data>* SelectAux(AVLNode<Key,Data>* node , int rank);
+
 
 
 
@@ -77,7 +79,10 @@ public:
 
     void setNewMax();
 
-};
+    AVLNode<Key,Data>* Select( int rank) ;
+
+
+    };
 ////////////////////// Implementations for private//////////////
 
 
@@ -439,6 +444,37 @@ bool RankTree<Key, Data>::EmptyTree() const
 {
     return m_size <= 0;
 }
+/////////////// addedd///////////////
+template<class Key, class Data>
+AVLNode<Key,Data> *RankTree<Key, Data>:: Select( int rank) {
+    if (rank > m_size || rank <=0){
+        return nullptr;
+    }
+    return SelectAux( m_root->leftSon,rank);
+}
+
+template<class Key, class Data>
+AVLNode<Key,Data> *RankTree<Key, Data>:: SelectAux(AVLNode<Key,Data>* node , int rank){
+    int w=0;
+    if(node->leftSon != nullptr) {
+        w = node->leftSon->rank;
+    }
+    if (w == rank-1){
+        return node;
+    }
+    if(w > rank-1){
+        return SelectAux(node->leftSon,rank);
+    }
+    if (w <rank-1){
+        return SelectAux(node->rightSon,rank-w-1);
+    }
+    return nullptr;
+}
+
+
+
+
+
 
 
 #endif //STREAMINGDBA1_CPP_RankTree_H

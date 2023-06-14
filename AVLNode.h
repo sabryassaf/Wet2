@@ -27,6 +27,7 @@ class AVLNode
     int m_balanceFactor;
     int m_height;
     NodeType m_type;
+    int m_rank;
 
 
 public:
@@ -51,6 +52,8 @@ public:
     int getBalanceFactor() const;
 
     int getHeight() const;
+
+    int getRank() const;
 
     Key getKey() const;
 
@@ -164,7 +167,11 @@ int AVLNode<Key, Data>::getHeight() const
 {
     return m_height;
 }
-
+template<class Key, class Data>
+int AVLNode<Key, Data>::getRank() const
+{
+    return m_rank;
+}
 template<class Key, class Data>
 Key AVLNode<Key, Data>::getKey() const
 {
@@ -194,7 +201,7 @@ template<class Key, class Data>
 AVLNode<Key, Data>::AVLNode(Key key, Data data) :m_key(key), m_data(data), m_leftChild(nullptr), m_rightChild(nullptr),
                                                  m_parent(
                                                          nullptr), m_balanceFactor(0), m_height(0),
-                                                 m_type(NodeType::LEAF)
+                                                 m_type(NodeType::LEAF),m_rank(1)
 {
 }
 
@@ -202,30 +209,22 @@ template<class Key, class Data>
 AVLNode<Key, Data>::~AVLNode() = default;
 
 template<class Key, class Data>
-void AVLNode<Key, Data>::updateParameters()
-{
-    if (this->m_leftChild != nullptr && this->m_rightChild != nullptr)
-    {
+void AVLNode<Key, Data>::updateParameters() {
+    if (this->m_leftChild != nullptr && this->m_rightChild != nullptr) {
         m_type = NodeType::HAS_BOTH_CHILDREN;
-    } else if (this->m_leftChild != nullptr && this->m_rightChild == nullptr)
-    {
+    } else if (this->m_leftChild != nullptr && this->m_rightChild == nullptr) {
         m_type = NodeType::ONLY_LEFT_CHILD;
-    } else if (this->m_leftChild == nullptr && this->m_rightChild != nullptr)
-    {
+    } else if (this->m_leftChild == nullptr && this->m_rightChild != nullptr) {
         m_type = NodeType::ONLY_RIGHT_CHILD;
-    } else
-    {
+    } else {
         m_type = NodeType::LEAF;
     }
-    switch (this->m_type)
-    {
+    switch (this->m_type) {
         case NodeType::HAS_BOTH_CHILDREN:
 
-            if (this->m_leftChild->m_height > this->m_rightChild->m_height)
-            {
+            if (this->m_leftChild->m_height > this->m_rightChild->m_height) {
                 this->m_height = this->m_leftChild->getHeight() + 1;
-            } else
-            {
+            } else {
                 this->m_height = this->m_rightChild->getHeight() + 1;
             }
             this->m_balanceFactor = this->m_leftChild->m_height - this->m_rightChild->m_height;
@@ -251,8 +250,9 @@ void AVLNode<Key, Data>::updateParameters()
             this->m_balanceFactor = 0;
             break;
     }
-}
 
+    this->m_rank = getRank(this->m_left_son) + getRank(this->m_right_son) + 1;
+}
 template<class Key, class Data>
 void AVLNode<Key, Data>::setRightChild(AVLNode *node)
 {
