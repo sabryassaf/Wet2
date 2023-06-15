@@ -1,0 +1,8 @@
+# ninja log v5
+4	513	7084698109498612	CMakeFiles/WET2DS.dir/mainWet2.cpp.obj	5057d19c67ca011f
+4	377	7084660483225496	CMakeFiles/WET2DS.dir/HashTable.cpp.obj	edd0e0ce5a2ac156
+16	407	7084510240493485	CMakeFiles/WET2DS.dir/recordsCompany.cpp.obj	9197602081dc22bd
+18	424	7084698108560403	CMakeFiles/WET2DS.dir/UnionFind.cpp.obj	f32752bd0269707b
+35	211	7085322233354776	CMakeFiles/WET2DS.dir/GroupUnion.cpp.obj	6814efb752900808
+28	457	7085322235841527	CMakeFiles/WET2DS.dir/HashTable.cpp.obj	edd0e0ce5a2ac156
+3	460	7085322337884057	CMakeFiles/WET2DS.dir/mainWet2.cpp.obj	5057d19c67ca011f

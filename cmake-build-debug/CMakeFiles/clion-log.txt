@@ -1,4 +1,4 @@
-"C:\Program Files\JetBrains\CLion 2022.2.4\bin\cmake\win\bin\cmake.exe" -DCMAKE_BUILD_TYPE=Debug "-DCMAKE_MAKE_PROGRAM=C:/Program Files/JetBrains/CLion 2022.2.4/bin/ninja/win/ninja.exe" -G Ninja -S "D:\OneDrive - Technion\Technion1\Semester 2 CS\Data Structures 1\HomeWork\Wet 2" -B "D:\OneDrive - Technion\Technion1\Semester 2 CS\Data Structures 1\HomeWork\Wet 2\cmake-build-debug"
+"C:\Program Files\JetBrains\CLion 2021.3.4\bin\cmake\win\bin\cmake.exe" -DCMAKE_BUILD_TYPE=Debug "-DCMAKE_MAKE_PROGRAM=C:/Program Files/JetBrains/CLion 2021.3.4/bin/ninja/win/ninja.exe" -G Ninja C:\Users\halam\CLionProjects\WET2DS
 -- Configuring done
 -- Generating done
--- Build files have been written to: D:/OneDrive - Technion/Technion1/Semester 2 CS/Data Structures 1/HomeWork/Wet 2/cmake-build-debug
+-- Build files have been written to: C:/Users/halam/CLionProjects/WET2DS/cmake-build-debug

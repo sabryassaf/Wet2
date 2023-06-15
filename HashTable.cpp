@@ -4,7 +4,7 @@ template<class Key,class Data>
 HashTable<Key,Data>::HashTable() : m_TreeArr(new DynamicArray<Key,Data>){}
 
 template<class Key,class Data>
-HashTable<Key,Data>::~HashTable() {
+HashTable<Key,Data>::~HashTable(){
     delete m_TreeArr;
 }
 

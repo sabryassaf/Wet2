@@ -77,6 +77,6 @@ RecordsCompany::addPrizeAUX(int c_id, double amount, AVLNode<int, Customer *> *n
 
 StatusType RecordsCompany::addPrize(int c_id1, int c_id2, double amount)
 {
-    RecordsCompany::addPrizeAUX(c_id2, amount, this->m_VIPCustomers.getRoot(), 0);
-    RecordsCompany::addPrizeAUX(c_id1-1, -amount, this->m_VIPCustomers.getRoot(), 0);
+    RecordsCompany::addPrizeAUX(c_id2, amount, this->m_CustomersTable.getRoot(), 0);
+    RecordsCompany::addPrizeAUX(c_id1-1, -amount, this->m_CustomersTable.getRoot(), 0);
 }
