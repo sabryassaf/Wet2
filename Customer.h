@@ -17,6 +17,25 @@ public:
     Customer(int id, int phoneNumber, bool isVIP) : m_id(id), m_phoneNumber(phoneNumber), m_VIP(isVIP)
     {}
 
+    int getId() const
+    {
+        return m_id;
+    }
+
+    int getPhone() const
+    {
+        return m_phoneNumber;
+    }
+
+    bool VIPStatus() const
+    {
+        return m_VIP;
+    }
+
+    void makeVIP()
+    {
+        m_VIP = true;
+    }
 };
 
 #endif //WET_2_CUSTOMER_H
