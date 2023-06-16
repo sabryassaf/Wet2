@@ -8,7 +8,7 @@
 class UnionNode {
 public:
     int m_GroupID;
-    int m_size;///////////////////////size of united groups and not the size of the players in the group
+    int m_size;
     UnionNode *m_father;
     Record* m_record;
     int m_height;

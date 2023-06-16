@@ -14,7 +14,10 @@ class GroupUnion {
     explicit GroupUnion(int k);
     ~GroupUnion();
     int Find(int group_id);
+    UnionNode* FindHead(int group_id);
+    void UnionRecords(int groupRecord1, int groupRecord2) ;
     void Union(int group1, int group2);
+
 
 
 };

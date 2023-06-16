@@ -28,6 +28,7 @@ class AVLNode
     int m_height;
     NodeType m_type;
     int m_rank;
+    double m_extra;
 
 
 public:
@@ -54,6 +55,8 @@ public:
     int getHeight() const;
 
     int getRank() const;
+
+    double getExtra();
 
     Key getKey() const;
 
@@ -82,6 +85,7 @@ public:
     {
         this->m_prize+=x;
     }
+    void UpdateExtra(double amount);
 
 };
 
@@ -173,6 +177,12 @@ int AVLNode<Key, Data>::getRank() const
     return m_rank;
 }
 template<class Key, class Data>
+double AVLNode<Key, Data>::getExtra()
+{
+    return m_extra;
+}
+
+template<class Key, class Data>
 Key AVLNode<Key, Data>::getKey() const
 {
     return m_key;
@@ -251,7 +261,6 @@ void AVLNode<Key, Data>::updateParameters() {
             break;
     }
 
-    this->m_rank = getRank(this->m_left_son) + getRank(this->m_right_son) + 1;
 }
 template<class Key, class Data>
 void AVLNode<Key, Data>::setRightChild(AVLNode *node)
@@ -294,4 +303,9 @@ void AVLNode<Key, Data>::setParent(AVLNode *node)
     this->updateParameters();
 }
 
+template<class Key, class Data>
+void AVLNode<Key, Data>::UpdateExtra(double amount)
+{
+    this->m_extra+=amount;
+}
 #endif //WET1_AVLNODE_H
