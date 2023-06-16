@@ -6,6 +6,7 @@
 #include "Customer.h"
 #include "HashTable.h"
 #include "GroupUnion.h"
+#include "Record.h"
 
 class RecordsCompany
 {
@@ -17,6 +18,8 @@ private:
     GroupUnion* m_RecordsGroup;
     // DS 3
     RankTree<int , Customer*> m_VipCustomersTree;
+
+    int m_numberOfRecords;
 
 
     StatusType addPrizeAUX(int c_id, double amount, AVLNode<int, Customer*> *node, int condition);

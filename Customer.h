@@ -11,10 +11,11 @@ private:
     int m_id;
     int m_phoneNumber;
     bool m_VIP;
+    int m_monthlyDebt;
 
 
 public:
-    Customer(int id, int phoneNumber, bool isVIP) : m_id(id), m_phoneNumber(phoneNumber), m_VIP(isVIP)
+    Customer(int id, int phoneNumber, bool isVIP) : m_id(id), m_phoneNumber(phoneNumber), m_VIP(isVIP), m_monthlyDebt(0)
     {}
 
     int getId() const
@@ -35,6 +36,16 @@ public:
     void makeVIP()
     {
         m_VIP = true;
+    }
+
+    void addMonthlyDebt(int payment)
+    {
+        m_monthlyDebt += payment;
+    }
+
+    int getMonthlyPayment() const
+    {
+        return m_monthlyDebt;
     }
 };
 

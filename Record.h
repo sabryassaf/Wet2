@@ -6,8 +6,20 @@
 #define WET2DS_RECORD_H
 
 
-class Record {
+class Record
+{
+private:
+    int m_rId;
+    int m_purchases;
 
+public:
+    Record(int RecordId);
+
+    int getRId() const;
+
+    void addAPurchase();
+
+    int getPurchases() const;
 };
 
 
