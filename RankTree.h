@@ -39,7 +39,11 @@ private:
 
     AVLNode<Key,Data>* SelectAux(AVLNode<Key,Data>* node , int rank);
 
+    void AddExtraRangeAux(AVLNode<Key, Data> *node,Key maxKey,double extra,  int rightcounter);
 
+    double SumExtraAux(const Key &key, AVLNode<Key, Data> *node,double sum) const;
+
+    void ReverseInOrderArrayKeysAux(AVLNode<Key, Data> *node, Key *InOrderArray, int *index);
 
 
 public:
@@ -81,8 +85,12 @@ public:
 
     AVLNode<Key,Data>* Select( int rank) ;
 
+    void AddExtraRange(Key maxKey,double extra);
 
-    };
+    double SumExtra(const Key &key) const; // before inset new element we want to initial the m_extra as minus the ones in its path
+
+    void ReverseInOrderArrayKeys(Key *InOrderArray);
+  };
 ////////////////////// Implementations for private//////////////
 
 
@@ -103,9 +111,12 @@ AVLNode<Key, Data> *RankTree<Key, Data>::getMax() const
 
 template<class Key, class Data>
 AVLNode<Key, Data> *RankTree<Key, Data>::RollingLL(AVLNode<Key, Data> *node)
-{    AVLNode<Key, Data> *RotateNode = node->getLeftChild();
+{
+    AVLNode<Key, Data> *RotateNode = node->getLeftChild();
+    double tempOld = node->getExtra(); // for the old root
+    double tempNew = RotateNode->getExtra(); // for the new root
     node->setLeftChild(RotateNode->getRightChild());
-
+    node->getLeftChild() ->UpdateExtra(tempNew);
     if (node->getParent())
     {
         if (node->getParent()->getLeftChild() == node)
@@ -118,6 +129,8 @@ AVLNode<Key, Data> *RankTree<Key, Data>::RollingLL(AVLNode<Key, Data> *node)
     }
     RotateNode->setParent(node->getParent());
     RotateNode->setRightChild(node);
+    RotateNode->UpdateExtra(tempOld);
+    node->UpdateExtra(- (RotateNode->getExtra()));
     if (this->m_root == node)
     {
         this->m_root = RotateNode;
@@ -130,8 +143,13 @@ AVLNode<Key, Data> *RankTree<Key, Data>::RollingLL(AVLNode<Key, Data> *node)
 
 template<class Key, class Data>
 AVLNode<Key, Data> *RankTree<Key, Data>::RollingRR(AVLNode<Key, Data> *node)
-{    AVLNode<Key, Data> *RotateNode = node->getRightChild();
+{
+    AVLNode<Key, Data> *RotateNode = node->getRightChild();
+    double tempOld = node->getExtra(); // for the old root
+    double tempNew = RotateNode->getExtra(); // for the new root
     node->setRightChild(RotateNode->getLeftChild());
+    node->getRightChild() ->UpdateExtra(tempNew);
+
 
     if (node->getParent())
     {
@@ -145,6 +163,8 @@ AVLNode<Key, Data> *RankTree<Key, Data>::RollingRR(AVLNode<Key, Data> *node)
     }
     RotateNode->setParent(node->getParent());
     RotateNode->setLeftChild(node);
+    RotateNode->UpdateExtra(tempOld);
+    node->UpdateExtra(- (RotateNode->getExtra()));
     if (this->m_root == node)
     {
         this->m_root = RotateNode;
@@ -209,7 +229,10 @@ AVLNode<Key, Data> *RankTree<Key, Data>::UpdateAndBalance(AVLNode<Key, Data> *no
 
     if(node->getBalanceFactor()==2 && node->getLeftChild()->getBalanceFactor()>=0 )
         return RollingLL(node);
-
+    // if we didn't commit any rolling we need to update the initial val of extra to gave us sum of 0
+    if(node != this->m_root) {
+        node->UpdateExtra(- SumExtra(node->getParent()->getKey()));
+    }
     return node;
 }
 
@@ -341,6 +364,62 @@ void RankTree<Key, Data>::ReverseInOrderArrayAux(AVLNode<Key, Data> *node, Data 
     ReverseInOrderArrayAux(node->getLeftChild(), InOrderArray, index);
 
 }
+template<class Key, class Data>
+void RankTree<Key, Data>::ReverseInOrderArrayKeysAux(AVLNode<Key, Data> *node, Key *InOrderArray, int *index)
+{
+    if (!node)
+        return;
+
+    ReverseInOrderArrayKeysAux(node->getRightChild(), InOrderArray, index);
+    InOrderArray[(*index)++] = node->getKey();
+    ReverseInOrderArrayKeysAux(node->getLeftChild(), InOrderArray, index);
+
+}
+template<class Key, class Data>
+void RankTree<Key, Data>::AddExtraRangeAux(AVLNode<Key, Data> *node,Key maxKey,double extra, int rightcounter){
+
+    if (!node)
+        return;
+
+
+    if (maxKey == node->getKey()){
+
+    }
+
+    if (maxKey > node->getKey()) {
+        if(rightcounter == 0) {
+            node->UpdateExtra(extra);
+            rightcounter=1;
+        }
+        FindNodeAux(maxKey, node->getRightChild(),rightcounter);
+
+    }
+
+    if (maxKey < node->getKey()) {
+         if(rightcounter > 0) {
+             node->UpdateExtra(-extra);
+             FindNodeAux(maxKey, node->getLeftChild());
+         }
+
+    }
+    return;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+}
 ////////////////////// Implementations for public//////////////
 
 template<class Key, class Data>
@@ -440,41 +519,49 @@ void RankTree<Key, Data>::ReverseInOrderArray(Data *InOrderArray)
 }
 
 template<class Key, class Data>
+void RankTree<Key, Data>::ReverseInOrderArrayKeys(Key *InOrderArray)
+{
+    int index = 0;
+    ReverseInOrderArrayKeysAux(m_root, InOrderArray, &index);
+}
+
+
+
+template<class Key, class Data>
 bool RankTree<Key, Data>::EmptyTree() const
 {
     return m_size <= 0;
 }
 /////////////// addedd///////////////
 template<class Key, class Data>
-AVLNode<Key,Data> *RankTree<Key, Data>:: Select( int rank) {
-    if (rank > m_size || rank <=0){
-        return nullptr;
-    }
-    return SelectAux( m_root->leftSon,rank);
-}
+double RankTree<Key, Data>:: SumExtraAux(const Key &key, AVLNode<Key, Data> *node, double sum) const{
+
+    if (!node)
+        return 0;
+
+
+    if (key == node->getKey())
+        return sum+=node->getExtra();
+
+
+    if (key > node->getKey())
+        return SumExtraAux(key, node->getRightChild(),sum+=node->getExtra() );
+
+
+    if (key < node->getKey())
+        return SumExtraAux(key, node->getLeftChild(),sum+=node->getExtra());
+
+
+    return 0;
+
+} // before inset new element we want to initial the m_extra as minus the ones in its path
+
 
 template<class Key, class Data>
-AVLNode<Key,Data> *RankTree<Key, Data>:: SelectAux(AVLNode<Key,Data>* node , int rank){
-    int w=0;
-    if(node->leftSon != nullptr) {
-        w = node->leftSon->rank;
-    }
-    if (w == rank-1){
-        return node;
-    }
-    if(w > rank-1){
-        return SelectAux(node->leftSon,rank);
-    }
-    if (w <rank-1){
-        return SelectAux(node->rightSon,rank-w-1);
-    }
-    return nullptr;
+double RankTree<Key, Data>::SumExtra(const Key &key) const
+{
+    return SumExtraAux(key, m_root,0);
 }
-
-
-
-
-
 
 
 #endif //STREAMINGDBA1_CPP_RankTree_H

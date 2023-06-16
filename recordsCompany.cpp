@@ -70,14 +70,18 @@ StatusType RecordsCompany::addPrizeAUX(int c_id, double amount, AVLNode<int, Cus
             return addPrizeAUX(c_id, amount, node->getLeftChild(), 0);
         }
     }
+    return StatusType ::FAILURE;
 
 }
 
 
 StatusType RecordsCompany::addPrize(int c_id1, int c_id2, double amount)
 {
-    RecordsCompany::addPrizeAUX(c_id2, amount, this->m_VipCustomersTree.getRoot(), 0);
-    RecordsCompany::addPrizeAUX(c_id1 - 1, -amount, this->m_VipCustomersTree.getRoot(), 0);
+    if (RecordsCompany::addPrizeAUX(c_id2, amount, this->m_VipCustomersTree.getRoot(), 0)== StatusType ::SUCCESS &&
+    RecordsCompany::addPrizeAUX(c_id1 - 1, -amount, this->m_VipCustomersTree.getRoot(), 0) ==  StatusType ::SUCCESS)
+        return StatusType ::SUCCESS;
+    return StatusType ::FAILURE;
+
 }
 
 StatusType RecordsCompany::addCostumer(int c_id, int phone)
@@ -86,7 +90,7 @@ StatusType RecordsCompany::addCostumer(int c_id, int phone)
     {
         return INVALID_INPUT;
     }
-    if (m_CustomersTable->find(c_id))
+    if (m_CustomersTable->findHash(c_id))
     {
         return ALREADY_EXISTS;
     }
@@ -112,7 +116,7 @@ Output_t<int> RecordsCompany::getPhone(int c_id)
     {
         return StatusType::INVALID_INPUT;
     }
-    Customer *requestedCustomer = m_CustomersTable->find(c_id);
+    Customer *requestedCustomer = m_CustomersTable->findHash(c_id);
     if (requestedCustomer)
     {
         return requestedCustomer->getPhone();
@@ -126,7 +130,7 @@ StatusType RecordsCompany::makeMember(int c_id)
     {
         return StatusType::INVALID_INPUT;
     }
-    Customer *requestedCustomer = m_CustomersTable->find(c_id);
+    Customer *requestedCustomer = m_CustomersTable->findHash(c_id);
     if (requestedCustomer)
     {
         if (requestedCustomer->VIPStatus())
@@ -134,8 +138,9 @@ StatusType RecordsCompany::makeMember(int c_id)
             return StatusType::ALREADY_EXISTS;
         }
         requestedCustomer->makeVIP();
-        m_VipCustomersTree.Insert(c_id, requestedCustomer)
+        m_VipCustomersTree.Insert(c_id, requestedCustomer);
     }
+    return StatusType ::FAILURE;
 }
 
 Output_t<bool> RecordsCompany::isMember(int c_id)
@@ -144,7 +149,8 @@ Output_t<bool> RecordsCompany::isMember(int c_id)
     {
         return StatusType::INVALID_INPUT;
     }
-    Customer *requestedCustomer = m_CustomersTable->find(c_id);
+    Customer *requestedCustomer;
+    requestedCustomer= m_CustomersTable->findHash(c_id);
     if (requestedCustomer)
     {
         return requestedCustomer->VIPStatus();
