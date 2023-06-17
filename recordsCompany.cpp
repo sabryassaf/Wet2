@@ -10,8 +10,8 @@ RecordsCompany ::RecordsCompany(): m_CustomersTable(),m_RecordsGroup(),m_VipCust
 StatusType RecordsCompany:: newMonth(int *records_stocks, int number_of_records){
     ///////////////// need to reset the sum of the costumers and the unionfind ! ////////////////
     this->m_numberOfRecords=number_of_records;
+    m_AllRecords = new Record*[m_numberOfRecords];
     for (int i=0;i<number_of_records;i++){
-      m_AllRecords = new Record*[m_numberOfRecords];
       m_AllRecords[i]= new Record(i,records_stocks[i]);
 
     }
