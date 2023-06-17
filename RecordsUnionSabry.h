@@ -45,7 +45,7 @@ public:
         /// first we find the root of the r_id and while going over the nodes we sum all the height not including the parent of the union
         while (temp != root)
         {
-            totalHeight += m_recordStocks[temp].;
+            totalHeight += m_recordStocks[temp].getHeight();
             temp = root;
             root = m_parent[temp];
         }
@@ -53,10 +53,10 @@ public:
         int reverseSub = 0;
         while (root != m_parent[r_id])
         {
-            reverseSub += m_recordStocks[r_id].m_height;
+            reverseSub += m_recordStocks[r_id].;
             int tempNext = m_parent[r_id];
             m_parent[r_id] = root;
-            m_recordStocks[r_id].m_height = totalHeight - reverseSub;
+            m_recordStocks[r_id].setHeight(totalHeight - reverseSub);
             r_id = tempNext;
         }
         return root;
@@ -78,7 +78,13 @@ public:
                 m_size[group1] += m_size[group2];
                 m_size[group2] = 0;
                 m_parent[group2] = group1;
-                m_recordStocks[group1].m_height = m_recordStocks[group2].m_stock;
+                m_recordStocks[group1].setHeight(m_recordStocks[group2].getStocks());
+            } else
+            {
+                m_size[group2] += m_size[group1];
+                m_size[group1] = 0;
+                m_parent[group1] = group2;
+                m_recordStocks[group2].setHeight(m_recordStocks[group1].getStocks());
             }
         }
     }
