@@ -53,7 +53,7 @@ public:
         int reverseSub = 0;
         while (root != m_parent[r_id])
         {
-            reverseSub += m_recordStocks[r_id].;
+            reverseSub += m_recordStocks[r_id].getHeight();
             int tempNext = m_parent[r_id];
             m_parent[r_id] = root;
             m_recordStocks[r_id].setHeight(totalHeight - reverseSub);
@@ -79,8 +79,8 @@ public:
             m_recordStocks[group1].setHeight(m_recordStocks[group2].getStocks());
 
         }
-    };
-
+    }
+};
 #endif //CUSTOMER_H_RECORDSUNIONSABRY_H
 
 
