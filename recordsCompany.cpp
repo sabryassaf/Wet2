@@ -5,14 +5,18 @@
 
 #include "recordsCompany.h"
 
-RecordsCompany ::RecordsCompany(): m_CustomersTable(),m_RecordsGroup(),m_VipCustomersTree(),m_AllRecords(nullptr),m_numberOfRecords(0) {}
+RecordsCompany::RecordsCompany()
+        : m_CustomersTable(), m_RecordsGroup(), m_VipCustomersTree(), m_AllRecords(nullptr), m_numberOfRecords(0)
+{}
 
-StatusType RecordsCompany:: newMonth(int *records_stocks, int number_of_records){
+StatusType RecordsCompany::newMonth(int *records_stocks, int number_of_records)
+{
     ///////////////// need to reset the sum of the costumers and the unionfind ! ////////////////
-    this->m_numberOfRecords=number_of_records;
-    m_AllRecords = new Record*[m_numberOfRecords];
-    for (int i=0;i<number_of_records;i++){
-      m_AllRecords[i]= new Record(i,records_stocks[i]);
+    this->m_numberOfRecords = number_of_records;
+    m_AllRecords = new Record *[m_numberOfRecords];
+    for (int i = 0; i < number_of_records; i++)
+    {
+        m_AllRecords[i] = new Record(i, records_stocks[i]);
 
     }
 }
@@ -205,5 +209,14 @@ StatusType RecordsCompany::addPrize(int c_id1, int c_id2, double amount)
         RecordsCompany::addPrizeAUX(c_id1 - 1, -amount, this->m_VipCustomersTree.getRoot(), 0) == StatusType::SUCCESS)
         return StatusType::SUCCESS;
     return StatusType::FAILURE;
+
+}
+
+StatusType RecordsCompany::putOnTop(int r_id1, int r_id2)
+{
+    if (r_id1 == 0 || r_id2 == 0)
+    {
+        return StatusType::INVALID_INPUT;
+    }
 
 }

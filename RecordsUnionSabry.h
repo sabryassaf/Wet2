@@ -73,22 +73,13 @@ public:
 
         } else
         {
-            if (m_size[group1] > m_size[group2])
-            {
-                m_size[group1] += m_size[group2];
-                m_size[group2] = 0;
-                m_parent[group2] = group1;
-                m_recordStocks[group1].setHeight(m_recordStocks[group2].getStocks());
-            } else
-            {
-                m_size[group2] += m_size[group1];
-                m_size[group1] = 0;
-                m_parent[group1] = group2;
-                m_recordStocks[group2].setHeight(m_recordStocks[group1].getStocks());
-            }
+            m_size[group2] += m_size[group1];
+            m_size[group1] = 0;
+            m_parent[group1] = group2;
+            m_recordStocks[group1].setHeight(m_recordStocks[group2].getStocks());
+
         }
-    }
-};
+    };
 
 #endif //CUSTOMER_H_RECORDSUNIONSABRY_H
 
