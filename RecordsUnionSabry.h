@@ -37,6 +37,16 @@ public:
         delete[] m_recordStocks;
     }
 
+    Record *getRecordPointer(int r_id)
+    {
+        return &m_recordStocks[r_id];
+    }
+
+    int getHeightOfRecords(int r_id) const
+    {
+        return m_recordStocks[r_id].getHeight();
+    }
+
     int find(int r_id)
     {
         int totalHeight = 0;
@@ -80,7 +90,17 @@ public:
 
         }
     }
+
+    bool alreadyOnTop(int r_id1, int r_id2)
+    {
+        if (find(r_id1) == find(r_id2))
+        {
+            return true;
+        }
+        return false;
+    }
 };
+
 #endif //CUSTOMER_H_RECORDSUNIONSABRY_H
 
 

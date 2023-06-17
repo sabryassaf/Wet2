@@ -18,6 +18,8 @@ public:
     Customer(int id, int phoneNumber, bool isVIP) : m_id(id), m_phoneNumber(phoneNumber), m_VIP(isVIP), m_monthlyDebt(0)
     {}
 
+    ~Customer() = default;
+
     int getId() const
     {
         return m_id;

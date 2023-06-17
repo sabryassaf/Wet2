@@ -41,6 +41,16 @@ public:
     {
         m_stocks = stocks;
     }
+
+    int getSales() const
+    {
+        return m_sales;
+    }
+
+    void addPurchase()
+    {
+        m_sales++;
+    }
 };
 
 

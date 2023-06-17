@@ -6,18 +6,25 @@
 #include "recordsCompany.h"
 
 RecordsCompany::RecordsCompany()
-        : m_CustomersTable(), m_RecordsGroup(), m_VipCustomersTree(), m_AllRecords(nullptr), m_numberOfRecords(0)
+        : m_CustomersTable(), m_RecordsGroup(), m_VipCustomersTree(), m_totalNumberOfRecords(0)
 {}
 
 StatusType RecordsCompany::newMonth(int *records_stocks, int number_of_records)
 {
-    ///////////////// need to reset the sum of the costumers and the unionfind ! ////////////////
-    this->m_numberOfRecords = number_of_records;
-    m_AllRecords = new Record *[m_numberOfRecords];
-    for (int i = 0; i < number_of_records; i++)
+    if (number_of_records < 0)
     {
-        m_AllRecords[i] = new Record(i, records_stocks[i]);
-
+        return StatusType::INVALID_INPUT;
+    }
+    try
+    {
+        delete m_RecordsGroup;
+        m_RecordsGroup = new UnionFindRecords(records_stocks, number_of_records);
+        m_totalNumberOfRecords = number_of_records;
+        return StatusType::SUCCESS;
+    }
+    catch (const std::exception &e)
+    {
+        return StatusType::ALLOCATION_ERROR;
     }
 }
 
@@ -95,7 +102,9 @@ Output_t<bool> RecordsCompany::isMember(int c_id)
     return StatusType::DOESNT_EXISTS;
 }
 
-/*Need to add a way to find the record and then t = the number of purchases*/
+/*Need to add a way to find the record and then t = the number of purchases
+ *
+ * should we remove a copy when we do a purchase? need to ask*/
 StatusType RecordsCompany::buyRecord(int c_id, int r_id)
 {
     if (c_id < 0 || r_id < 0)
@@ -105,14 +114,14 @@ StatusType RecordsCompany::buyRecord(int c_id, int r_id)
     Customer *requestedCustomer;
     requestedCustomer = m_CustomersTable->findHash(c_id);
     Record *requestedRecord;
-    requestedRecord = m_AllRecords[r_id]; //fix thisssssssss
-    if (requestedCustomer && m_numberOfRecords >= r_id)
+    requestedRecord = m_RecordsGroup->getRecordPointer(r_id);
+    if (requestedCustomer && m_totalNumberOfRecords >= r_id)
     {
         if (requestedCustomer->VIPStatus())
         {
-            requestedCustomer->addMonthlyDebt(100 + requestedRecord->getPurchases());
+            requestedCustomer->addMonthlyDebt(100 + requestedRecord->getSales());
         }
-        requestedRecord->addAPurchase();
+        requestedRecord->addPurchase();
         return StatusType::SUCCESS;
     }
     return StatusType::DOESNT_EXISTS;
@@ -218,5 +227,39 @@ StatusType RecordsCompany::putOnTop(int r_id1, int r_id2)
     {
         return StatusType::INVALID_INPUT;
     }
+    if (r_id1 > m_totalNumberOfRecords || r_id2 > m_totalNumberOfRecords)
+    {
+        return StatusType::DOESNT_EXISTS;
+    }
+    if (m_RecordsGroup->alreadyOnTop(r_id1, r_id2))
+    {
+        return StatusType::FAILURE;
+    }
+    m_RecordsGroup->unite(r_id1, r_id2);
+    return StatusType::SUCCESS;
 
+}
+
+StatusType RecordsCompany::getPlace(int r_id, int *column, int *hight)
+{
+    if (column == NULL || hight == NULL || r_id < 0)
+    {
+        return StatusType::INVALID_INPUT;
+    }
+    if (r_id > m_totalNumberOfRecords)
+    {
+        return StatusType::DOESNT_EXISTS;
+    }
+    int temp = m_RecordsGroup->find(r_id);
+    column = &temp;
+    int tempHeight = m_RecordsGroup->getHeightOfRecords(r_id);
+    hight = &tempHeight;
+    return StatusType::SUCCESS;
+
+}
+
+RecordsCompany::~RecordsCompany()
+{
+    delete m_RecordsGroup;
+    delete m_CustomersTable;
 }

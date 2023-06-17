@@ -14,18 +14,15 @@ class RecordsCompany
 private:
 
     // DS 1
-    HashTable<int, Customer*>* m_CustomersTable;
+    HashTable<int, Customer *> *m_CustomersTable;
     // DS 2
-    UnionFindRecords* m_RecordsGroup;
+    UnionFindRecords *m_RecordsGroup;
     // DS 3
-    RankTree<int , Customer*> m_VipCustomersTree;
-   // DS 4
-//   Record** m_AllRecords;
+    RankTree<int, Customer *> m_VipCustomersTree;
 
-//    int m_numberOfRecords;
+    int m_totalNumberOfRecords;
 
-
-    StatusType addPrizeAUX(int c_id, double amount, AVLNode<int, Customer*> *node, int condition);
+    StatusType addPrizeAUX(int c_id, double amount, AVLNode<int, Customer *> *node, int condition);
 
 public:
     RecordsCompany();
