@@ -207,5 +207,3 @@ StatusType RecordsCompany::addPrize(int c_id1, int c_id2, double amount)
     return StatusType::FAILURE;
 
 }
-
-

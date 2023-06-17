@@ -8,22 +8,33 @@
 
 class Record
 {
-private:
-    int m_rId;
-    int m_copys;
-    int m_purchases;
+    int m_stock;
+    int m_sales;
+    int m_height;
 
 public:
 
-    Record();
+    Record() : m_stock(0), m_sales(0), m_height(0)
 
-    Record(int RecordId, int copys);
+    int getHeight() const
+    {
+        return m_height;
+    }
 
-    int getRId() const;
+    void addHeight(int add)
+    {
+        m_height += add;
+    }
 
-    void addAPurchase();
+    int getStocks() const
+    {
+        return m_stock;
+    }
 
-    int getPurchases() const;
+    void setStocks(int stocks)
+    {
+        m_stocs = stocks;
+    }
 };
 
 
