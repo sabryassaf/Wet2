@@ -4,7 +4,9 @@
 
 #include "Record.h"
 
-Record::Record(int RecordId) : m_rId(RecordId), m_purchases(0)
+Record::Record()=default;
+
+Record::Record(int RecordId,int copys) : m_rId(RecordId), m_copys(copys), m_purchases(0)
 {}
 
 

@@ -11,7 +11,7 @@
 # =============================================================================
 
 # =============================================================================
-# Project: WET2DS
+# Project: WET2
 # Configurations: Debug
 # =============================================================================
 
@@ -39,68 +39,68 @@ include CMakeFiles/rules.ninja
 #############################################
 # Logical path to working directory; prefix for absolute paths.
 
-cmake_ninja_workdir = C$:/Users/halam/CLionProjects/WET2DS/cmake-build-debug/
+cmake_ninja_workdir = C$:/Users/halam/CLionProjects/wet2dsGIT/Wet2/cmake-build-debug/
 # =============================================================================
-# Object build statements for EXECUTABLE target WET2DS
+# Object build statements for EXECUTABLE target WET2
 
 
 #############################################
-# Order-only phony target for WET2DS
+# Order-only phony target for WET2
 
-build cmake_object_order_depends_target_WET2DS: phony || CMakeFiles/WET2DS.dir
+build cmake_object_order_depends_target_WET2: phony || CMakeFiles/WET2.dir
 
-build CMakeFiles/WET2DS.dir/mainWet2.cpp.obj: CXX_COMPILER__WET2DS_Debug C$:/Users/halam/CLionProjects/WET2DS/mainWet2.cpp || cmake_object_order_depends_target_WET2DS
-  DEP_FILE = CMakeFiles\WET2DS.dir\mainWet2.cpp.obj.d
+build CMakeFiles/WET2.dir/mainWet2.cpp.obj: CXX_COMPILER__WET2_Debug C$:/Users/halam/CLionProjects/wet2dsGIT/Wet2/mainWet2.cpp || cmake_object_order_depends_target_WET2
+  DEP_FILE = CMakeFiles\WET2.dir\mainWet2.cpp.obj.d
   FLAGS = -g -std=gnu++14
-  INCLUDES = -IC:/Users/halam/CLionProjects/WET2DS/.
-  OBJECT_DIR = CMakeFiles\WET2DS.dir
-  OBJECT_FILE_DIR = CMakeFiles\WET2DS.dir
+  INCLUDES = -IC:/Users/halam/CLionProjects/wet2dsGIT/Wet2/.
+  OBJECT_DIR = CMakeFiles\WET2.dir
+  OBJECT_FILE_DIR = CMakeFiles\WET2.dir
 
-build CMakeFiles/WET2DS.dir/HashTable.cpp.obj: CXX_COMPILER__WET2DS_Debug C$:/Users/halam/CLionProjects/WET2DS/HashTable.cpp || cmake_object_order_depends_target_WET2DS
-  DEP_FILE = CMakeFiles\WET2DS.dir\HashTable.cpp.obj.d
+build CMakeFiles/WET2.dir/HashTable.cpp.obj: CXX_COMPILER__WET2_Debug C$:/Users/halam/CLionProjects/wet2dsGIT/Wet2/HashTable.cpp || cmake_object_order_depends_target_WET2
+  DEP_FILE = CMakeFiles\WET2.dir\HashTable.cpp.obj.d
   FLAGS = -g -std=gnu++14
-  INCLUDES = -IC:/Users/halam/CLionProjects/WET2DS/.
-  OBJECT_DIR = CMakeFiles\WET2DS.dir
-  OBJECT_FILE_DIR = CMakeFiles\WET2DS.dir
+  INCLUDES = -IC:/Users/halam/CLionProjects/wet2dsGIT/Wet2/.
+  OBJECT_DIR = CMakeFiles\WET2.dir
+  OBJECT_FILE_DIR = CMakeFiles\WET2.dir
 
-build CMakeFiles/WET2DS.dir/recordsCompany.cpp.obj: CXX_COMPILER__WET2DS_Debug C$:/Users/halam/CLionProjects/WET2DS/recordsCompany.cpp || cmake_object_order_depends_target_WET2DS
-  DEP_FILE = CMakeFiles\WET2DS.dir\recordsCompany.cpp.obj.d
+build CMakeFiles/WET2.dir/recordsCompany.cpp.obj: CXX_COMPILER__WET2_Debug C$:/Users/halam/CLionProjects/wet2dsGIT/Wet2/recordsCompany.cpp || cmake_object_order_depends_target_WET2
+  DEP_FILE = CMakeFiles\WET2.dir\recordsCompany.cpp.obj.d
   FLAGS = -g -std=gnu++14
-  INCLUDES = -IC:/Users/halam/CLionProjects/WET2DS/.
-  OBJECT_DIR = CMakeFiles\WET2DS.dir
-  OBJECT_FILE_DIR = CMakeFiles\WET2DS.dir
+  INCLUDES = -IC:/Users/halam/CLionProjects/wet2dsGIT/Wet2/.
+  OBJECT_DIR = CMakeFiles\WET2.dir
+  OBJECT_FILE_DIR = CMakeFiles\WET2.dir
 
-build CMakeFiles/WET2DS.dir/GroupUnion.cpp.obj: CXX_COMPILER__WET2DS_Debug C$:/Users/halam/CLionProjects/WET2DS/GroupUnion.cpp || cmake_object_order_depends_target_WET2DS
-  DEP_FILE = CMakeFiles\WET2DS.dir\GroupUnion.cpp.obj.d
+build CMakeFiles/WET2.dir/GroupUnion.cpp.obj: CXX_COMPILER__WET2_Debug C$:/Users/halam/CLionProjects/wet2dsGIT/Wet2/GroupUnion.cpp || cmake_object_order_depends_target_WET2
+  DEP_FILE = CMakeFiles\WET2.dir\GroupUnion.cpp.obj.d
   FLAGS = -g -std=gnu++14
-  INCLUDES = -IC:/Users/halam/CLionProjects/WET2DS/.
-  OBJECT_DIR = CMakeFiles\WET2DS.dir
-  OBJECT_FILE_DIR = CMakeFiles\WET2DS.dir
+  INCLUDES = -IC:/Users/halam/CLionProjects/wet2dsGIT/Wet2/.
+  OBJECT_DIR = CMakeFiles\WET2.dir
+  OBJECT_FILE_DIR = CMakeFiles\WET2.dir
 
 
 # =============================================================================
-# Link build statements for EXECUTABLE target WET2DS
+# Link build statements for EXECUTABLE target WET2
 
 
 #############################################
-# Link the executable WET2DS.exe
+# Link the executable WET2.exe
 
-build WET2DS.exe: CXX_EXECUTABLE_LINKER__WET2DS_Debug CMakeFiles/WET2DS.dir/mainWet2.cpp.obj CMakeFiles/WET2DS.dir/HashTable.cpp.obj CMakeFiles/WET2DS.dir/recordsCompany.cpp.obj CMakeFiles/WET2DS.dir/GroupUnion.cpp.obj
+build WET2.exe: CXX_EXECUTABLE_LINKER__WET2_Debug CMakeFiles/WET2.dir/mainWet2.cpp.obj CMakeFiles/WET2.dir/HashTable.cpp.obj CMakeFiles/WET2.dir/recordsCompany.cpp.obj CMakeFiles/WET2.dir/GroupUnion.cpp.obj
   FLAGS = -g
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
-  OBJECT_DIR = CMakeFiles\WET2DS.dir
+  OBJECT_DIR = CMakeFiles\WET2.dir
   POST_BUILD = cd .
   PRE_LINK = cd .
-  TARGET_FILE = WET2DS.exe
-  TARGET_IMPLIB = libWET2DS.dll.a
-  TARGET_PDB = WET2DS.exe.dbg
+  TARGET_FILE = WET2.exe
+  TARGET_IMPLIB = libWET2.dll.a
+  TARGET_PDB = WET2.exe.dbg
 
 
 #############################################
 # Utility command for edit_cache
 
 build CMakeFiles/edit_cache.util: CUSTOM_COMMAND
-  COMMAND = cmd.exe /C "cd /D C:\Users\halam\CLionProjects\WET2DS\cmake-build-debug && "C:\Program Files\JetBrains\CLion 2021.3.4\bin\cmake\win\bin\cmake.exe" -E echo "No interactive CMake dialog available.""
+  COMMAND = cmd.exe /C "cd /D C:\Users\halam\CLionProjects\wet2dsGIT\Wet2\cmake-build-debug && "C:\Program Files\JetBrains\CLion 2021.3.4\bin\cmake\win\bin\cmake.exe" -E echo "No interactive CMake dialog available.""
   DESC = No interactive CMake dialog available...
   restat = 1
 
@@ -111,7 +111,7 @@ build edit_cache: phony CMakeFiles/edit_cache.util
 # Utility command for rebuild_cache
 
 build CMakeFiles/rebuild_cache.util: CUSTOM_COMMAND
-  COMMAND = cmd.exe /C "cd /D C:\Users\halam\CLionProjects\WET2DS\cmake-build-debug && "C:\Program Files\JetBrains\CLion 2021.3.4\bin\cmake\win\bin\cmake.exe" --regenerate-during-build -SC:\Users\halam\CLionProjects\WET2DS -BC:\Users\halam\CLionProjects\WET2DS\cmake-build-debug"
+  COMMAND = cmd.exe /C "cd /D C:\Users\halam\CLionProjects\wet2dsGIT\Wet2\cmake-build-debug && "C:\Program Files\JetBrains\CLion 2021.3.4\bin\cmake\win\bin\cmake.exe" --regenerate-during-build -SC:\Users\halam\CLionProjects\wet2dsGIT\Wet2 -BC:\Users\halam\CLionProjects\wet2dsGIT\Wet2\cmake-build-debug"
   DESC = Running CMake to regenerate build system...
   pool = console
   restat = 1
@@ -121,7 +121,7 @@ build rebuild_cache: phony CMakeFiles/rebuild_cache.util
 # =============================================================================
 # Target aliases.
 
-build WET2DS: phony WET2DS.exe
+build WET2: phony WET2.exe
 
 # =============================================================================
 # Folder targets.
@@ -129,9 +129,9 @@ build WET2DS: phony WET2DS.exe
 # =============================================================================
 
 #############################################
-# Folder: C:/Users/halam/CLionProjects/WET2DS/cmake-build-debug
+# Folder: C:/Users/halam/CLionProjects/wet2dsGIT/Wet2/cmake-build-debug
 
-build all: phony WET2DS.exe
+build all: phony WET2.exe
 
 # =============================================================================
 # Built-in targets
@@ -140,14 +140,14 @@ build all: phony WET2DS.exe
 #############################################
 # Re-run CMake if any of its inputs changed.
 
-build build.ninja: RERUN_CMAKE | ../CMakeLists.txt C$:/Program$ Files/JetBrains/CLion$ 2021.3.4/bin/cmake/win/share/cmake-3.21/Modules/CMakeCInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2021.3.4/bin/cmake/win/share/cmake-3.21/Modules/CMakeCXXInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2021.3.4/bin/cmake/win/share/cmake-3.21/Modules/CMakeCommonLanguageInclude.cmake C$:/Program$ Files/JetBrains/CLion$ 2021.3.4/bin/cmake/win/share/cmake-3.21/Modules/CMakeGenericSystem.cmake C$:/Program$ Files/JetBrains/CLion$ 2021.3.4/bin/cmake/win/share/cmake-3.21/Modules/CMakeInitializeConfigs.cmake C$:/Program$ Files/JetBrains/CLion$ 2021.3.4/bin/cmake/win/share/cmake-3.21/Modules/CMakeLanguageInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2021.3.4/bin/cmake/win/share/cmake-3.21/Modules/CMakeRCInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2021.3.4/bin/cmake/win/share/cmake-3.21/Modules/CMakeSystemSpecificInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2021.3.4/bin/cmake/win/share/cmake-3.21/Modules/CMakeSystemSpecificInitialize.cmake C$:/Program$ Files/JetBrains/CLion$ 2021.3.4/bin/cmake/win/share/cmake-3.21/Modules/Compiler/CMakeCommonCompilerMacros.cmake C$:/Program$ Files/JetBrains/CLion$ 2021.3.4/bin/cmake/win/share/cmake-3.21/Modules/Compiler/GNU-C.cmake C$:/Program$ Files/JetBrains/CLion$ 2021.3.4/bin/cmake/win/share/cmake-3.21/Modules/Compiler/GNU-CXX.cmake C$:/Program$ Files/JetBrains/CLion$ 2021.3.4/bin/cmake/win/share/cmake-3.21/Modules/Compiler/GNU.cmake C$:/Program$ Files/JetBrains/CLion$ 2021.3.4/bin/cmake/win/share/cmake-3.21/Modules/Platform/Windows-GNU-C-ABI.cmake C$:/Program$ Files/JetBrains/CLion$ 2021.3.4/bin/cmake/win/share/cmake-3.21/Modules/Platform/Windows-GNU-C.cmake C$:/Program$ Files/JetBrains/CLion$ 2021.3.4/bin/cmake/win/share/cmake-3.21/Modules/Platform/Windows-GNU-CXX-ABI.cmake C$:/Program$ Files/JetBrains/CLion$ 2021.3.4/bin/cmake/win/share/cmake-3.21/Modules/Platform/Windows-GNU-CXX.cmake C$:/Program$ Files/JetBrains/CLion$ 2021.3.4/bin/cmake/win/share/cmake-3.21/Modules/Platform/Windows-GNU.cmake C$:/Program$ Files/JetBrains/CLion$ 2021.3.4/bin/cmake/win/share/cmake-3.21/Modules/Platform/Windows-windres.cmake C$:/Program$ Files/JetBrains/CLion$ 2021.3.4/bin/cmake/win/share/cmake-3.21/Modules/Platform/Windows.cmake C$:/Program$ Files/JetBrains/CLion$ 2021.3.4/bin/cmake/win/share/cmake-3.21/Modules/Platform/WindowsPaths.cmake CMakeCache.txt CMakeFiles/3.21.1/CMakeCCompiler.cmake CMakeFiles/3.21.1/CMakeCXXCompiler.cmake CMakeFiles/3.21.1/CMakeRCCompiler.cmake CMakeFiles/3.21.1/CMakeSystem.cmake
+build build.ninja: RERUN_CMAKE | ../CMakeLists.txt C$:/Program$ Files/JetBrains/CLion$ 2021.3.4/bin/cmake/win/share/cmake-3.21/Modules/CMakeCInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2021.3.4/bin/cmake/win/share/cmake-3.21/Modules/CMakeCXXInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2021.3.4/bin/cmake/win/share/cmake-3.21/Modules/CMakeCommonLanguageInclude.cmake C$:/Program$ Files/JetBrains/CLion$ 2021.3.4/bin/cmake/win/share/cmake-3.21/Modules/CMakeGenericSystem.cmake C$:/Program$ Files/JetBrains/CLion$ 2021.3.4/bin/cmake/win/share/cmake-3.21/Modules/CMakeInitializeConfigs.cmake C$:/Program$ Files/JetBrains/CLion$ 2021.3.4/bin/cmake/win/share/cmake-3.21/Modules/CMakeLanguageInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2021.3.4/bin/cmake/win/share/cmake-3.21/Modules/CMakeRCInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2021.3.4/bin/cmake/win/share/cmake-3.21/Modules/CMakeSystemSpecificInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2021.3.4/bin/cmake/win/share/cmake-3.21/Modules/CMakeSystemSpecificInitialize.cmake C$:/Program$ Files/JetBrains/CLion$ 2021.3.4/bin/cmake/win/share/cmake-3.21/Modules/Compiler/CMakeCommonCompilerMacros.cmake C$:/Program$ Files/JetBrains/CLion$ 2021.3.4/bin/cmake/win/share/cmake-3.21/Modules/Compiler/GNU-C.cmake C$:/Program$ Files/JetBrains/CLion$ 2021.3.4/bin/cmake/win/share/cmake-3.21/Modules/Compiler/GNU-CXX.cmake C$:/Program$ Files/JetBrains/CLion$ 2021.3.4/bin/cmake/win/share/cmake-3.21/Modules/Compiler/GNU.cmake C$:/Program$ Files/JetBrains/CLion$ 2021.3.4/bin/cmake/win/share/cmake-3.21/Modules/Platform/Windows-GNU-C-ABI.cmake C$:/Program$ Files/JetBrains/CLion$ 2021.3.4/bin/cmake/win/share/cmake-3.21/Modules/Platform/Windows-GNU-C.cmake C$:/Program$ Files/JetBrains/CLion$ 2021.3.4/bin/cmake/win/share/cmake-3.21/Modules/Platform/Windows-GNU-CXX.cmake C$:/Program$ Files/JetBrains/CLion$ 2021.3.4/bin/cmake/win/share/cmake-3.21/Modules/Platform/Windows-GNU.cmake C$:/Program$ Files/JetBrains/CLion$ 2021.3.4/bin/cmake/win/share/cmake-3.21/Modules/Platform/Windows-windres.cmake C$:/Program$ Files/JetBrains/CLion$ 2021.3.4/bin/cmake/win/share/cmake-3.21/Modules/Platform/Windows.cmake C$:/Program$ Files/JetBrains/CLion$ 2021.3.4/bin/cmake/win/share/cmake-3.21/Modules/Platform/WindowsPaths.cmake CMakeCache.txt CMakeFiles/3.21.1/CMakeCCompiler.cmake CMakeFiles/3.21.1/CMakeCXXCompiler.cmake CMakeFiles/3.21.1/CMakeRCCompiler.cmake CMakeFiles/3.21.1/CMakeSystem.cmake
   pool = console
 
 
 #############################################
 # A missing CMake input file is not an error.
 
-build ../CMakeLists.txt C$:/Program$ Files/JetBrains/CLion$ 2021.3.4/bin/cmake/win/share/cmake-3.21/Modules/CMakeCInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2021.3.4/bin/cmake/win/share/cmake-3.21/Modules/CMakeCXXInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2021.3.4/bin/cmake/win/share/cmake-3.21/Modules/CMakeCommonLanguageInclude.cmake C$:/Program$ Files/JetBrains/CLion$ 2021.3.4/bin/cmake/win/share/cmake-3.21/Modules/CMakeGenericSystem.cmake C$:/Program$ Files/JetBrains/CLion$ 2021.3.4/bin/cmake/win/share/cmake-3.21/Modules/CMakeInitializeConfigs.cmake C$:/Program$ Files/JetBrains/CLion$ 2021.3.4/bin/cmake/win/share/cmake-3.21/Modules/CMakeLanguageInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2021.3.4/bin/cmake/win/share/cmake-3.21/Modules/CMakeRCInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2021.3.4/bin/cmake/win/share/cmake-3.21/Modules/CMakeSystemSpecificInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2021.3.4/bin/cmake/win/share/cmake-3.21/Modules/CMakeSystemSpecificInitialize.cmake C$:/Program$ Files/JetBrains/CLion$ 2021.3.4/bin/cmake/win/share/cmake-3.21/Modules/Compiler/CMakeCommonCompilerMacros.cmake C$:/Program$ Files/JetBrains/CLion$ 2021.3.4/bin/cmake/win/share/cmake-3.21/Modules/Compiler/GNU-C.cmake C$:/Program$ Files/JetBrains/CLion$ 2021.3.4/bin/cmake/win/share/cmake-3.21/Modules/Compiler/GNU-CXX.cmake C$:/Program$ Files/JetBrains/CLion$ 2021.3.4/bin/cmake/win/share/cmake-3.21/Modules/Compiler/GNU.cmake C$:/Program$ Files/JetBrains/CLion$ 2021.3.4/bin/cmake/win/share/cmake-3.21/Modules/Platform/Windows-GNU-C-ABI.cmake C$:/Program$ Files/JetBrains/CLion$ 2021.3.4/bin/cmake/win/share/cmake-3.21/Modules/Platform/Windows-GNU-C.cmake C$:/Program$ Files/JetBrains/CLion$ 2021.3.4/bin/cmake/win/share/cmake-3.21/Modules/Platform/Windows-GNU-CXX-ABI.cmake C$:/Program$ Files/JetBrains/CLion$ 2021.3.4/bin/cmake/win/share/cmake-3.21/Modules/Platform/Windows-GNU-CXX.cmake C$:/Program$ Files/JetBrains/CLion$ 2021.3.4/bin/cmake/win/share/cmake-3.21/Modules/Platform/Windows-GNU.cmake C$:/Program$ Files/JetBrains/CLion$ 2021.3.4/bin/cmake/win/share/cmake-3.21/Modules/Platform/Windows-windres.cmake C$:/Program$ Files/JetBrains/CLion$ 2021.3.4/bin/cmake/win/share/cmake-3.21/Modules/Platform/Windows.cmake C$:/Program$ Files/JetBrains/CLion$ 2021.3.4/bin/cmake/win/share/cmake-3.21/Modules/Platform/WindowsPaths.cmake CMakeCache.txt CMakeFiles/3.21.1/CMakeCCompiler.cmake CMakeFiles/3.21.1/CMakeCXXCompiler.cmake CMakeFiles/3.21.1/CMakeRCCompiler.cmake CMakeFiles/3.21.1/CMakeSystem.cmake: phony
+build ../CMakeLists.txt C$:/Program$ Files/JetBrains/CLion$ 2021.3.4/bin/cmake/win/share/cmake-3.21/Modules/CMakeCInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2021.3.4/bin/cmake/win/share/cmake-3.21/Modules/CMakeCXXInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2021.3.4/bin/cmake/win/share/cmake-3.21/Modules/CMakeCommonLanguageInclude.cmake C$:/Program$ Files/JetBrains/CLion$ 2021.3.4/bin/cmake/win/share/cmake-3.21/Modules/CMakeGenericSystem.cmake C$:/Program$ Files/JetBrains/CLion$ 2021.3.4/bin/cmake/win/share/cmake-3.21/Modules/CMakeInitializeConfigs.cmake C$:/Program$ Files/JetBrains/CLion$ 2021.3.4/bin/cmake/win/share/cmake-3.21/Modules/CMakeLanguageInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2021.3.4/bin/cmake/win/share/cmake-3.21/Modules/CMakeRCInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2021.3.4/bin/cmake/win/share/cmake-3.21/Modules/CMakeSystemSpecificInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2021.3.4/bin/cmake/win/share/cmake-3.21/Modules/CMakeSystemSpecificInitialize.cmake C$:/Program$ Files/JetBrains/CLion$ 2021.3.4/bin/cmake/win/share/cmake-3.21/Modules/Compiler/CMakeCommonCompilerMacros.cmake C$:/Program$ Files/JetBrains/CLion$ 2021.3.4/bin/cmake/win/share/cmake-3.21/Modules/Compiler/GNU-C.cmake C$:/Program$ Files/JetBrains/CLion$ 2021.3.4/bin/cmake/win/share/cmake-3.21/Modules/Compiler/GNU-CXX.cmake C$:/Program$ Files/JetBrains/CLion$ 2021.3.4/bin/cmake/win/share/cmake-3.21/Modules/Compiler/GNU.cmake C$:/Program$ Files/JetBrains/CLion$ 2021.3.4/bin/cmake/win/share/cmake-3.21/Modules/Platform/Windows-GNU-C-ABI.cmake C$:/Program$ Files/JetBrains/CLion$ 2021.3.4/bin/cmake/win/share/cmake-3.21/Modules/Platform/Windows-GNU-C.cmake C$:/Program$ Files/JetBrains/CLion$ 2021.3.4/bin/cmake/win/share/cmake-3.21/Modules/Platform/Windows-GNU-CXX.cmake C$:/Program$ Files/JetBrains/CLion$ 2021.3.4/bin/cmake/win/share/cmake-3.21/Modules/Platform/Windows-GNU.cmake C$:/Program$ Files/JetBrains/CLion$ 2021.3.4/bin/cmake/win/share/cmake-3.21/Modules/Platform/Windows-windres.cmake C$:/Program$ Files/JetBrains/CLion$ 2021.3.4/bin/cmake/win/share/cmake-3.21/Modules/Platform/Windows.cmake C$:/Program$ Files/JetBrains/CLion$ 2021.3.4/bin/cmake/win/share/cmake-3.21/Modules/Platform/WindowsPaths.cmake CMakeCache.txt CMakeFiles/3.21.1/CMakeCCompiler.cmake CMakeFiles/3.21.1/CMakeCXXCompiler.cmake CMakeFiles/3.21.1/CMakeRCCompiler.cmake CMakeFiles/3.21.1/CMakeSystem.cmake: phony
 
 
 #############################################

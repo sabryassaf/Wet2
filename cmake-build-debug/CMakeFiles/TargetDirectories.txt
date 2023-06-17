@@ -1,3 +1,3 @@
-C:/Users/halam/CLionProjects/WET2DS/cmake-build-debug/CMakeFiles/WET2DS.dir
-C:/Users/halam/CLionProjects/WET2DS/cmake-build-debug/CMakeFiles/edit_cache.dir
-C:/Users/halam/CLionProjects/WET2DS/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+C:/Users/halam/CLionProjects/wet2dsGIT/Wet2/cmake-build-debug/CMakeFiles/WET2.dir
+C:/Users/halam/CLionProjects/wet2dsGIT/Wet2/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/halam/CLionProjects/wet2dsGIT/Wet2/cmake-build-debug/CMakeFiles/rebuild_cache.dir

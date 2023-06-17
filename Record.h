@@ -10,10 +10,14 @@ class Record
 {
 private:
     int m_rId;
+    int m_copys;
     int m_purchases;
 
 public:
-    Record(int RecordId);
+
+    Record();
+
+    Record(int RecordId, int copys);
 
     int getRId() const;
 

@@ -5,83 +5,16 @@
 
 #include "recordsCompany.h"
 
-StatusType RecordsCompany::addPrizeAUX(int c_id, double amount, AVLNode<int, Customer *> *node, int condition)
-{
-    if (condition == 0)
-    {
-        if (c_id > node->getKey())
-        {
-            node->updatePrize(amount);
-            return addPrizeAUX(c_id, amount, node->getRightChild(), 1);
-        }
-        if (c_id == node->getKey())
-        {
-            node->updatePrize(amount);
-            if (node->getRightChild())
-            {
-                node->getRightChild()->updatePrize(-amount);
-                return StatusType::SUCCESS;
-            }
-        }
-        return addPrizeAUX(c_id, amount, node->getLeftChild(), 0);
+RecordsCompany ::RecordsCompany(): m_CustomersTable(),m_RecordsGroup(),m_VipCustomersTree(),m_AllRecords(nullptr),m_numberOfRecords(0) {}
+
+StatusType RecordsCompany:: newMonth(int *records_stocks, int number_of_records){
+    ///////////////// need to reset the sum of the costumers and the unionfind ! ////////////////
+    this->m_numberOfRecords=number_of_records;
+    for (int i=0;i<number_of_records;i++){
+      m_AllRecords = new Record*[m_numberOfRecords];
+      m_AllRecords[i]= new Record(i,records_stocks[i]);
 
     }
-
-    if (condition == 1)
-    {
-        if (c_id > node->getKey())
-        {
-            return addPrizeAUX(c_id, amount, node->getRightChild(), 1);
-        }
-        if (c_id == node->getKey())
-        {
-            node->updatePrize(amount);
-            if (node->getRightChild())
-            {
-                node->getRightChild()->updatePrize(-amount);
-                return StatusType::SUCCESS;
-            }
-        }
-        if (c_id < node->getKey())
-        {
-            node->updatePrize(-amount);
-            return addPrizeAUX(c_id, amount, node->getLeftChild(), 3);
-
-        }
-    }
-    if (condition == 3)
-    {
-        if (c_id > node->getKey())
-        {
-            node->updatePrize(amount);
-            return addPrizeAUX(c_id, amount, node->getRightChild(), 1);
-        }
-        if (c_id == node->getKey())
-        {
-            node->updatePrize(amount);
-            if (node->getRightChild())
-            {
-                node->getRightChild()->updatePrize(-amount);
-                return StatusType::SUCCESS;
-            }
-        }
-        if (c_id < node->getKey())
-        {
-            return addPrizeAUX(c_id, amount, node->getLeftChild(), 0);
-        }
-    }
-    return StatusType::FAILURE;
-
-}
-
-
-StatusType RecordsCompany::addPrize(int c_id1, int c_id2, double amount)
-{
-    if (RecordsCompany::addPrizeAUX(c_id2, amount, this->m_VipCustomersTree.getRoot(), 0) == StatusType::SUCCESS &&
-        RecordsCompany::addPrizeAUX(c_id1 - 1, -amount, this->m_VipCustomersTree.getRoot(), 0) == StatusType::SUCCESS)
-        return StatusType::SUCCESS;
-    return StatusType::FAILURE;
-
 }
 
 StatusType RecordsCompany::addCostumer(int c_id, int phone)
@@ -168,7 +101,7 @@ StatusType RecordsCompany::buyRecord(int c_id, int r_id)
     Customer *requestedCustomer;
     requestedCustomer = m_CustomersTable->findHash(c_id);
     Record *requestedRecord;
-    requestedRecord = m_RecordsGroup->Find(r_id);
+    requestedRecord = m_AllRecords[r_id]; //fix thisssssssss
     if (requestedCustomer && m_numberOfRecords >= r_id)
     {
         if (requestedCustomer->VIPStatus())
@@ -196,6 +129,83 @@ Output_t<double> RecordsCompany::getExpenses(int c_id)
     return StatusType::DOESNT_EXISTS;
 }
 
+StatusType RecordsCompany::addPrizeAUX(int c_id, double amount, AVLNode<int, Customer *> *node, int condition)
+{
+    if (condition == 0)
+    {
+        if (c_id > node->getKey())
+        {
+            node->updatePrize(amount);
+            return addPrizeAUX(c_id, amount, node->getRightChild(), 1);
+        }
+        if (c_id == node->getKey())
+        {
+            node->updatePrize(amount);
+            if (node->getRightChild())
+            {
+                node->getRightChild()->updatePrize(-amount);
+                return StatusType::SUCCESS;
+            }
+        }
+        return addPrizeAUX(c_id, amount, node->getLeftChild(), 0);
 
+    }
+
+    if (condition == 1)
+    {
+        if (c_id > node->getKey())
+        {
+            return addPrizeAUX(c_id, amount, node->getRightChild(), 1);
+        }
+        if (c_id == node->getKey())
+        {
+            node->updatePrize(amount);
+            if (node->getRightChild())
+            {
+                node->getRightChild()->updatePrize(-amount);
+                return StatusType::SUCCESS;
+            }
+        }
+        if (c_id < node->getKey())
+        {
+            node->updatePrize(-amount);
+            return addPrizeAUX(c_id, amount, node->getLeftChild(), 3);
+
+        }
+    }
+    if (condition == 3)
+    {
+        if (c_id > node->getKey())
+        {
+            node->updatePrize(amount);
+            return addPrizeAUX(c_id, amount, node->getRightChild(), 1);
+        }
+        if (c_id == node->getKey())
+        {
+            node->updatePrize(amount);
+            if (node->getRightChild())
+            {
+                node->getRightChild()->updatePrize(-amount);
+                return StatusType::SUCCESS;
+            }
+        }
+        if (c_id < node->getKey())
+        {
+            return addPrizeAUX(c_id, amount, node->getLeftChild(), 0);
+        }
+    }
+    return StatusType::FAILURE;
+
+}
+
+
+StatusType RecordsCompany::addPrize(int c_id1, int c_id2, double amount)
+{
+    if (RecordsCompany::addPrizeAUX(c_id2, amount, this->m_VipCustomersTree.getRoot(), 0) == StatusType::SUCCESS &&
+        RecordsCompany::addPrizeAUX(c_id1 - 1, -amount, this->m_VipCustomersTree.getRoot(), 0) == StatusType::SUCCESS)
+        return StatusType::SUCCESS;
+    return StatusType::FAILURE;
+
+}
 
 

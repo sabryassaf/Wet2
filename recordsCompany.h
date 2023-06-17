@@ -18,6 +18,8 @@ private:
     GroupUnion* m_RecordsGroup;
     // DS 3
     RankTree<int , Customer*> m_VipCustomersTree;
+   // DS 4
+   Record** m_AllRecords;
 
     int m_numberOfRecords;
 

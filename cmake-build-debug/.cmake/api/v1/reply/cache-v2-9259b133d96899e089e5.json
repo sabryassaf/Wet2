@@ -55,7 +55,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "c:/Users/halam/CLionProjects/WET2DS/cmake-build-debug"
+			"value" : "c:/Users/halam/CLionProjects/wet2dsGIT/Wet2/cmake-build-debug"
 		},
 		{
 			"name" : "CMAKE_CACHE_MAJOR_VERSION",
@@ -130,6 +130,18 @@
 			"value" : "C:/Program Files/JetBrains/CLion 2021.3.4/bin/cmake/win/bin/ctest.exe"
 		},
 		{
+			"name" : "CMAKE_CXX_ABI_COMPILED",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Result of TRY_COMPILE"
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : "FALSE"
+		},
+		{
 			"name" : "CMAKE_CXX_COMPILER",
 			"properties" : 
 			[
@@ -142,7 +154,7 @@
 					"value" : "CXX compiler"
 				}
 			],
-			"type" : "FILEPATH",
+			"type" : "STRING",
 			"value" : "C:/Program Files/JetBrains/CLion 2021.3.4/bin/mingw/bin/g++.exe"
 		},
 		{
@@ -623,7 +635,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "C:/Users/halam/CLionProjects/WET2DS"
+			"value" : "C:/Users/halam/CLionProjects/wet2dsGIT/Wet2"
 		},
 		{
 			"name" : "CMAKE_INSTALL_PREFIX",
@@ -851,7 +863,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "WET2DS"
+			"value" : "WET2"
 		},
 		{
 			"name" : "CMAKE_RANLIB",
@@ -1239,7 +1251,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "C:/Users/halam/CLionProjects/WET2DS/cmake-build-debug"
+			"value" : "C:/Users/halam/CLionProjects/wet2dsGIT/Wet2/cmake-build-debug"
 		},
 		{
 			"name" : "WET2DS_IS_TOP_LEVEL",
@@ -1263,7 +1275,43 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "C:/Users/halam/CLionProjects/WET2DS"
+			"value" : "C:/Users/halam/CLionProjects/wet2dsGIT/Wet2"
+		},
+		{
+			"name" : "WET2_BINARY_DIR",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Value Computed by CMake"
+				}
+			],
+			"type" : "STATIC",
+			"value" : "C:/Users/halam/CLionProjects/wet2dsGIT/Wet2/cmake-build-debug"
+		},
+		{
+			"name" : "WET2_IS_TOP_LEVEL",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Value Computed by CMake"
+				}
+			],
+			"type" : "STATIC",
+			"value" : "ON"
+		},
+		{
+			"name" : "WET2_SOURCE_DIR",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Value Computed by CMake"
+				}
+			],
+			"type" : "STATIC",
+			"value" : "C:/Users/halam/CLionProjects/wet2dsGIT/Wet2"
 		}
 	],
 	"kind" : "cache",
