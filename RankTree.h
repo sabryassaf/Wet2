@@ -8,7 +8,6 @@
 #include <iostream>
 #include "AVLNode.h"
 #include "utilesWet2.h"
-#include "recordsCompany.h"
 
 
 template<class Key, class Data>
@@ -46,7 +45,6 @@ private:
 
     void ReverseInOrderArrayKeysAux(AVLNode<Key, Data> *node, Key *InOrderArray, int *index);
 
-    friend class RecordsCompany;
 
 public:
 
@@ -92,7 +90,7 @@ public:
     double SumExtra(const Key &key) const; // before inset new element we want to initial the m_extra as minus the ones in its path
 
     void ReverseInOrderArrayKeys(Key *InOrderArray);
-  };
+};
 ////////////////////// Implementations for private//////////////
 
 
@@ -118,7 +116,8 @@ AVLNode<Key, Data> *RankTree<Key, Data>::RollingLL(AVLNode<Key, Data> *node)
     double tempOld = node->getExtra(); // for the old root
     double tempNew = RotateNode->getExtra(); // for the new root
     node->setLeftChild(RotateNode->getRightChild());
-    node->getLeftChild() ->UpdateExtra(tempNew);
+    if( node->getLeftChild())
+        node->getLeftChild() ->UpdateExtra(tempNew);
     if (node->getParent())
     {
         if (node->getParent()->getLeftChild() == node)
@@ -150,7 +149,8 @@ AVLNode<Key, Data> *RankTree<Key, Data>::RollingRR(AVLNode<Key, Data> *node)
     double tempOld = node->getExtra(); // for the old root
     double tempNew = RotateNode->getExtra(); // for the new root
     node->setRightChild(RotateNode->getLeftChild());
-    node->getRightChild() ->UpdateExtra(tempNew);
+    if (node->getRightChild())
+        node->getRightChild() ->UpdateExtra(tempNew);
 
 
     if (node->getParent())
@@ -232,9 +232,7 @@ AVLNode<Key, Data> *RankTree<Key, Data>::UpdateAndBalance(AVLNode<Key, Data> *no
     if(node->getBalanceFactor()==2 && node->getLeftChild()->getBalanceFactor()>=0 )
         return RollingLL(node);
     // if we didn't commit any rolling we need to update the initial val of extra to gave us sum of 0
-    if(node != this->m_root) {
-        node->UpdateExtra(- SumExtra(node->getParent()->getKey()));
-    }
+
     return node;
 }
 
@@ -351,7 +349,9 @@ AVLNode<Key, Data> *RankTree<Key, Data>::InsertNodeAux(Key &key, Data &data, AVL
     if (node == this->m_root)
     {
         this->m_root = balance;
+
     }
+
     return balance;
 }
 
@@ -398,11 +398,10 @@ void RankTree<Key, Data>::AddExtraRangeAux(AVLNode<Key, Data> *node,Key maxKey,d
     }
 
     if (maxKey < node->getKey()) {
-         if(rightcounter > 0) {
-             node->UpdateExtra(-extra);
-             FindNodeAux(maxKey, node->getLeftChild());
-         }
-
+        if(rightcounter > 0) {
+            node->UpdateExtra(-extra);
+            FindNodeAux(maxKey, node->getLeftChild());
+        }
     }
     return;
 
@@ -459,7 +458,9 @@ StatusType RankTree<Key, Data>::Insert(Key &key, Data &data)
     m_root = InsertNodeAux(key, data, m_root);
     if (!m_root)
         return StatusType::ALLOCATION_ERROR;
-
+    if(SumExtra(key) != 0){
+        FindNodeAux(key,m_root)->UpdateExtra(-SumExtra(key));
+    }
     this->setNewMax();
     m_size++;
     return StatusType::SUCCESS;
@@ -536,7 +537,8 @@ bool RankTree<Key, Data>::EmptyTree() const
 }
 /////////////// addedd///////////////
 template<class Key, class Data>
-double RankTree<Key, Data>:: SumExtraAux(const Key &key, AVLNode<Key, Data> *node, double sum) const{
+double RankTree<Key, Data>:: SumExtraAux(const Key &key, AVLNode<Key, Data> *node, double sum) const
+{
 
     if (!node)
         return 0;
@@ -556,7 +558,8 @@ double RankTree<Key, Data>:: SumExtraAux(const Key &key, AVLNode<Key, Data> *nod
 
     return 0;
 
-} // before inset new element we want to initial the m_extra as minus the ones in its path
+}
+// before inset new element we want to initial the m_extra as minus the ones in its path
 
 
 template<class Key, class Data>

@@ -6,7 +6,8 @@
 #include "recordsCompany.h"
 
 RecordsCompany::RecordsCompany()
-        : m_CustomersTable(new( HashTable<int, Customer *>) ), m_RecordsGroup(new UnionFindRecords()), m_VipCustomersTree(new RankTree<int, Customer *>), m_totalNumberOfRecords(64)
+        : m_CustomersTable(new( HashTable<int, Customer *>)), m_RecordsGroup(new UnionFindRecords()),
+          m_VipCustomersTree(new RankTree<int, Customer *>), m_totalNumberOfRecords(64)
 {}
 
 StatusType RecordsCompany::newMonth(int *records_stocks, int number_of_records)
@@ -85,7 +86,7 @@ StatusType RecordsCompany::makeMember(int c_id)
         m_VipCustomersTree->Insert(c_id, requestedCustomer);
         return StatusType::SUCCESS;
     }
-    return StatusType::FAILURE;
+    return StatusType::DOESNT_EXISTS;
 }
 
 Output_t<bool> RecordsCompany::isMember(int c_id)
@@ -116,7 +117,7 @@ StatusType RecordsCompany::buyRecord(int c_id, int r_id)
     requestedCustomer = m_CustomersTable->findHash(c_id);
     Record *requestedRecord;
     requestedRecord = m_RecordsGroup->getRecordPointer(r_id);
-    if (requestedCustomer && m_totalNumberOfRecords >= r_id)
+    if (requestedCustomer && requestedRecord)
     {
         if (requestedCustomer->VIPStatus())
         {
@@ -138,7 +139,7 @@ Output_t<double> RecordsCompany::getExpenses(int c_id)
     requestedCustomer = m_VipCustomersTree->Find(c_id);
     if (requestedCustomer)
     {
-        return requestedCustomer->getMonthlyPayment()-requestedCustomer->getPrize();
+        return requestedCustomer->getMonthlyPayment() - requestedCustomer->getPrize();
     }
     return StatusType::DOESNT_EXISTS;
 }
@@ -219,6 +220,10 @@ StatusType RecordsCompany::addPrizeAUX(int c_id, double amount, AVLNode<int, Cus
 
 StatusType RecordsCompany::addPrize(int c_id1, int c_id2, double amount)
 {
+    if (c_id1 < 0 || c_id2 < c_id1 || amount <= 0)
+    {
+        return StatusType::INVALID_INPUT;
+    }
     if (RecordsCompany::addPrizeAUX(c_id2, amount, this->m_VipCustomersTree->getRoot(), 0) == StatusType::SUCCESS &&
         RecordsCompany::addPrizeAUX(c_id1 - 1, -amount, this->m_VipCustomersTree->getRoot(), 0) == StatusType::SUCCESS)
         return StatusType::SUCCESS;

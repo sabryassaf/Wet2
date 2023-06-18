@@ -11,4 +11,4 @@ add_executable(WET2DS
         RankTree.h
         recordsCompany.h
         utilesWet2.h
-        Customer.h HashTable.cpp HashTable.h recordsCompany.cpp UnionNode.h GroupUnion.h GroupUnion.cpp)
+        Customer.h  HashTable.h recordsCompany.cpp RecordsUnionSabry.h Record.h)

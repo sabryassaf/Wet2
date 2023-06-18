@@ -39,7 +39,7 @@ public:
     {
         delete[] m_parent;
         delete[] m_size;
-        for(int i = 0; i < m_totalRecords; i++)
+        for (int i = 0; i < m_totalRecords; i++)
         {
             delete m_recordStocks[i];
         }
@@ -48,7 +48,11 @@ public:
 
     Record *getRecordPointer(int r_id)
     {
-        return m_recordStocks[r_id];
+        if (r_id < m_totalRecords)
+        {
+            return m_recordStocks[r_id];
+
+        } else return nullptr;
     }
 
     int getHeightOfRecords(int r_id) const
@@ -113,7 +117,7 @@ public:
                 m_recordStocks[group1]->m_column = m_recordStocks[group2]->m_column;
                 m_recordStocks[group1]->m_r =
                         m_recordStocks[group1]->m_r + m_recordStocks[group2]->m_stocks - m_recordStocks[group2]->m_r;
-                m_recordStocks[group2]->m_stocks+=m_recordStocks[group1]->m_stocks;
+                m_recordStocks[group2]->m_stocks += m_recordStocks[group1]->m_stocks;
             } else
             {
                 m_size[group1] += m_size[group2];
