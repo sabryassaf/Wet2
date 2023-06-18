@@ -14,6 +14,7 @@ private:
     int *m_parent;
     int *m_size;
     Record **m_recordStocks;
+    int m_totalRecords;
 
 public:
     UnionFindRecords() = default;
@@ -31,12 +32,17 @@ public:
             m_recordStocks[i]->m_stocks = new_records_stocks[i];
 
         }
+        m_totalRecords = size;
     }
 
     ~UnionFindRecords()
     {
         delete[] m_parent;
         delete[] m_size;
+        for(int i = 0; i < m_totalRecords; i++)
+        {
+            delete m_recordStocks[i];
+        }
         delete[] m_recordStocks;
     }
 
