@@ -5,7 +5,6 @@
 #include "RankTree.h"
 #include "Customer.h"
 #include "HashTable.h"
-#include "GroupUnion.h"
 #include "Record.h"
 #include "RecordsUnionSabry.h"
 
@@ -18,7 +17,7 @@ private:
     // DS 2
     UnionFindRecords *m_RecordsGroup;
     // DS 3
-    RankTree<int, Customer *> m_VipCustomersTree;
+    RankTree<int, Customer *> *m_VipCustomersTree;
 
     int m_totalNumberOfRecords;
 

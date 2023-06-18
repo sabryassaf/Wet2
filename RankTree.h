@@ -8,6 +8,7 @@
 #include <iostream>
 #include "AVLNode.h"
 #include "utilesWet2.h"
+#include "recordsCompany.h"
 
 
 template<class Key, class Data>
@@ -45,6 +46,7 @@ private:
 
     void ReverseInOrderArrayKeysAux(AVLNode<Key, Data> *node, Key *InOrderArray, int *index);
 
+    friend class RecordsCompany;
 
 public:
 

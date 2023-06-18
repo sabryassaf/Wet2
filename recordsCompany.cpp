@@ -6,7 +6,7 @@
 #include "recordsCompany.h"
 
 RecordsCompany::RecordsCompany()
-        : m_CustomersTable(), m_RecordsGroup(), m_VipCustomersTree(), m_totalNumberOfRecords(0)
+        : m_CustomersTable(new( HashTable<int, Customer *>) ), m_RecordsGroup(new UnionFindRecords()), m_VipCustomersTree(new RankTree<int, Customer *>), m_totalNumberOfRecords(64)
 {}
 
 StatusType RecordsCompany::newMonth(int *records_stocks, int number_of_records)
@@ -82,7 +82,8 @@ StatusType RecordsCompany::makeMember(int c_id)
             return StatusType::ALREADY_EXISTS;
         }
         requestedCustomer->makeVIP();
-        m_VipCustomersTree.Insert(c_id, requestedCustomer);
+        m_VipCustomersTree->Insert(c_id, requestedCustomer);
+        return StatusType::SUCCESS;
     }
     return StatusType::FAILURE;
 }
@@ -134,16 +135,20 @@ Output_t<double> RecordsCompany::getExpenses(int c_id)
         return StatusType::INVALID_INPUT;
     }
     Customer *requestedCustomer;
-    requestedCustomer = m_VipCustomersTree.Find(c_id);
+    requestedCustomer = m_VipCustomersTree->Find(c_id);
     if (requestedCustomer)
     {
-        return requestedCustomer->getMonthlyPayment();
+        return requestedCustomer->getMonthlyPayment()-requestedCustomer->getPrize();
     }
     return StatusType::DOESNT_EXISTS;
 }
 
 StatusType RecordsCompany::addPrizeAUX(int c_id, double amount, AVLNode<int, Customer *> *node, int condition)
 {
+    if (node == nullptr)
+    {
+        return StatusType::SUCCESS;
+    }
     if (condition == 0)
     {
         if (c_id > node->getKey())
@@ -214,8 +219,8 @@ StatusType RecordsCompany::addPrizeAUX(int c_id, double amount, AVLNode<int, Cus
 
 StatusType RecordsCompany::addPrize(int c_id1, int c_id2, double amount)
 {
-    if (RecordsCompany::addPrizeAUX(c_id2, amount, this->m_VipCustomersTree.getRoot(), 0) == StatusType::SUCCESS &&
-        RecordsCompany::addPrizeAUX(c_id1 - 1, -amount, this->m_VipCustomersTree.getRoot(), 0) == StatusType::SUCCESS)
+    if (RecordsCompany::addPrizeAUX(c_id2, amount, this->m_VipCustomersTree->getRoot(), 0) == StatusType::SUCCESS &&
+        RecordsCompany::addPrizeAUX(c_id1 - 1, -amount, this->m_VipCustomersTree->getRoot(), 0) == StatusType::SUCCESS)
         return StatusType::SUCCESS;
     return StatusType::FAILURE;
 
@@ -251,9 +256,10 @@ StatusType RecordsCompany::getPlace(int r_id, int *column, int *hight)
         return StatusType::DOESNT_EXISTS;
     }
     int temp = m_RecordsGroup->find(r_id);
-    column = &temp;
+    int realColumn = (m_RecordsGroup->getColumn(temp));
+    *column = realColumn;
     int tempHeight = m_RecordsGroup->getHeightOfRecords(r_id);
-    hight = &tempHeight;
+    *hight = tempHeight;
     return StatusType::SUCCESS;
 
 }
@@ -263,3 +269,4 @@ RecordsCompany::~RecordsCompany()
     delete m_RecordsGroup;
     delete m_CustomersTable;
 }
+

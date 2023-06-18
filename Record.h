@@ -8,29 +8,18 @@
 
 class Record
 {
-    int m_stocks;
+
     int m_sales;
-    int m_height;
 
 public:
+    int m_stocks;
+    int m_r;
+    int m_column;
+    int m_height;
 
-    Record() : m_stocks(0), m_sales(0), m_height(0)
+    Record(int id) : m_stocks(0), m_sales(0), m_column(id), m_r(0), m_height(0)
     {}
 
-    int getHeight() const
-    {
-        return m_height;
-    }
-
-    void setHeight(int newHeight)
-    {
-        m_height = newHeight;
-    }
-
-    void addHeight(int add)
-    {
-        m_height += add;
-    }
 
     int getStocks() const
     {

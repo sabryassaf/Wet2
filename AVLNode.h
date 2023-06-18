@@ -4,7 +4,7 @@
 
 #ifndef WET1_AVLNODE_H
 #define WET1_AVLNODE_H
-
+#include "recordsCompany.h"
 
 enum struct NodeType
 {
@@ -29,6 +29,8 @@ class AVLNode
     NodeType m_type;
     int m_rank;
     double m_extra;
+
+    friend class RecordsCompany;
 
 
 public:
@@ -83,9 +85,17 @@ public:
 
     void updatePrize(double x)
     {
-        this->m_prize+=x;
+        this->m_prize += x;
+        m_data->updatePrize(x);
     }
+
     void UpdateExtra(double amount);
+
+    int getPrize(int c_id1)
+    {
+        return m_prize;
+    }
+
 
 };
 
@@ -171,11 +181,13 @@ int AVLNode<Key, Data>::getHeight() const
 {
     return m_height;
 }
+
 template<class Key, class Data>
 int AVLNode<Key, Data>::getRank() const
 {
     return m_rank;
 }
+
 template<class Key, class Data>
 double AVLNode<Key, Data>::getExtra()
 {
@@ -211,7 +223,7 @@ template<class Key, class Data>
 AVLNode<Key, Data>::AVLNode(Key key, Data data) :m_key(key), m_data(data), m_leftChild(nullptr), m_rightChild(nullptr),
                                                  m_parent(
                                                          nullptr), m_balanceFactor(0), m_height(0),
-                                                 m_type(NodeType::LEAF),m_rank(1)
+                                                 m_type(NodeType::LEAF), m_rank(1)
 {
 }
 
@@ -219,22 +231,30 @@ template<class Key, class Data>
 AVLNode<Key, Data>::~AVLNode() = default;
 
 template<class Key, class Data>
-void AVLNode<Key, Data>::updateParameters() {
-    if (this->m_leftChild != nullptr && this->m_rightChild != nullptr) {
+void AVLNode<Key, Data>::updateParameters()
+{
+    if (this->m_leftChild != nullptr && this->m_rightChild != nullptr)
+    {
         m_type = NodeType::HAS_BOTH_CHILDREN;
-    } else if (this->m_leftChild != nullptr && this->m_rightChild == nullptr) {
+    } else if (this->m_leftChild != nullptr && this->m_rightChild == nullptr)
+    {
         m_type = NodeType::ONLY_LEFT_CHILD;
-    } else if (this->m_leftChild == nullptr && this->m_rightChild != nullptr) {
+    } else if (this->m_leftChild == nullptr && this->m_rightChild != nullptr)
+    {
         m_type = NodeType::ONLY_RIGHT_CHILD;
-    } else {
+    } else
+    {
         m_type = NodeType::LEAF;
     }
-    switch (this->m_type) {
+    switch (this->m_type)
+    {
         case NodeType::HAS_BOTH_CHILDREN:
 
-            if (this->m_leftChild->m_height > this->m_rightChild->m_height) {
+            if (this->m_leftChild->m_height > this->m_rightChild->m_height)
+            {
                 this->m_height = this->m_leftChild->getHeight() + 1;
-            } else {
+            } else
+            {
                 this->m_height = this->m_rightChild->getHeight() + 1;
             }
             this->m_balanceFactor = this->m_leftChild->m_height - this->m_rightChild->m_height;
@@ -262,6 +282,7 @@ void AVLNode<Key, Data>::updateParameters() {
     }
 
 }
+
 template<class Key, class Data>
 void AVLNode<Key, Data>::setRightChild(AVLNode *node)
 {
@@ -306,6 +327,7 @@ void AVLNode<Key, Data>::setParent(AVLNode *node)
 template<class Key, class Data>
 void AVLNode<Key, Data>::UpdateExtra(double amount)
 {
-    this->m_extra+=amount;
+    this->m_extra += amount;
 }
+
 #endif //WET1_AVLNODE_H
