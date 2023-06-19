@@ -4,6 +4,7 @@
 
 #ifndef WET1_AVLNODE_H
 #define WET1_AVLNODE_H
+
 #include "recordsCompany.h"
 
 enum struct NodeType
@@ -20,7 +21,6 @@ class AVLNode
 {
     Key m_key;
     Data m_data;
-    double m_prize;
     AVLNode *m_leftChild;
     AVLNode *m_rightChild;
     AVLNode *m_parent;
@@ -91,14 +91,18 @@ public:
 
     void UpdateExtra(double amount);
 
-    int getPrize(int c_id1)
-    {
-        return m_prize;
-    }
+    void resetExtraNode();
 
 
 };
 
+template<class Key, class Data>
+void AVLNode<Key, Data>::resetExtraNode()
+{
+    m_extra = 0;
+    Data tmp = this->getData();
+    tmp->resetMonthlyDebt();
+}
 
 template<class Key, class Data>
 AVLNode<Key, Data>::AVLNode(AVLNode<Key, Data> &other)

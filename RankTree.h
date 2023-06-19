@@ -37,7 +37,7 @@ private:
 
     void ReverseInOrderArrayAux(AVLNode<Key, Data> *node, Data *InOrderArray, int *index);
 
-    AVLNode<Key,Data>* SelectAux(AVLNode<Key,Data>* node , int rank);
+//    AVLNode<Key,Data>* SelectAux(AVLNode<Key,Data>* node , int rank);
 
     void AddExtraRangeAux(AVLNode<Key, Data> *node,Key maxKey,double extra,  int rightcounter);
 
@@ -47,6 +47,7 @@ private:
 
 
 public:
+    void resetNodeForNewMonth(AVLNode<Key, Data> *node);
 
     void FreeData(AVLNode<Key, Data> *node);
 
@@ -83,9 +84,9 @@ public:
 
     void setNewMax();
 
-    AVLNode<Key,Data>* Select( int rank) ;
-
-    void AddExtraRange(Key maxKey,double extra);
+//    AVLNode<Key,Data>* Select( int rank) ;
+//
+//    void AddExtraRange(Key maxKey,double extra);
 
     double SumExtra(const Key &key) const; // before inset new element we want to initial the m_extra as minus the ones in its path
 
@@ -405,21 +406,18 @@ void RankTree<Key, Data>::AddExtraRangeAux(AVLNode<Key, Data> *node,Key maxKey,d
     }
     return;
 
+}
+template<class Key, class Data>
+void RankTree<Key, Data>::resetNodeForNewMonth(AVLNode<Key, Data> *node) {
+    if (node == nullptr) {
+        return;
+    }
+
+    node->resetExtraNode();
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+    resetNodeForNewMonth(node->getLeftChild());
+    resetNodeForNewMonth(node->getRightChild());
 }
 ////////////////////// Implementations for public//////////////
 
