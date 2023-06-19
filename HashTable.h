@@ -47,27 +47,28 @@ template<class Key,class Data>
 int HashTable<Key,Data>::HashFunction(int ID) {
     return (ID)%(m_sizeArr);
 }
-
 template<class Key,class Data>
 void HashTable<Key,Data>::ExpandHash(){
 
-    int expandedSize = 2*(m_sizeArr);
+    int oldSize = m_sizeArr;
+    int expandedSize = 2*oldSize;
     auto* newArray = new RankTree<Key,Data>*[expandedSize];
-    int oldSize =m_sizeArr;
     m_sizeArr = expandedSize;
-    for(int i = 0 ; i < 2 * oldSize ; i++){
+
+    // Initialize newArray
+    for(int i = 0 ; i < expandedSize ; i++){
         newArray[i] = new RankTree<Key,Data>;
     }
-    for (int i = 0; i < oldSize; ++i) {
 
+    // Copy contents of m_TreeArr to newArray
+    for (int i = 0; i < oldSize; ++i) {
         try {
-            auto *arr = new Key [newArray[i]->getSize()];
-            newArray[i]->ReverseInOrderArrayKeys(arr);
-            for (int j = 0; j < newArray[i]->getSize(); j++) {
+            auto *arr = new Key [m_TreeArr[i]->getSize()];
+            m_TreeArr[i]->ReverseInOrderArrayKeys(arr);
+            for (int j = 0; j < m_TreeArr[i]->getSize(); j++) {
                 int newIndex = HashFunction(arr[j]);
-                Data temp=m_TreeArr[i]->Find(arr[j]);
+                Data temp = m_TreeArr[i]->Find(arr[j]);
                 newArray[newIndex]->Insert(arr[j], temp);
-                m_TreeArr[i]->Remove(arr[j]);
             }
             delete[] arr;
         }
@@ -76,14 +77,53 @@ void HashTable<Key,Data>::ExpandHash(){
             throw;
         }
     }
-        for(int i = 0 ; i < oldSize ; i++){
-            delete m_TreeArr[i];
-        }
 
-        delete[] m_TreeArr; // check if this is the correct way
-        m_TreeArr = newArray;
-        m_stressFactor = (double) m_sizeElem / m_sizeArr;
+    // Delete m_TreeArr and its contents
+    for(int i = 0 ; i < oldSize ; i++){
+        delete m_TreeArr[i];
     }
+    delete[] m_TreeArr;
+
+    m_TreeArr = newArray;
+    m_stressFactor = (double) m_sizeElem / m_sizeArr;
+}
+
+//template<class Key,class Data>
+//void HashTable<Key,Data>::ExpandHash(){
+//
+//    int expandedSize = 2*(m_sizeArr);
+//    auto* newArray = new RankTree<Key,Data>*[expandedSize];
+//    int oldSize =m_sizeArr;
+//    m_sizeArr = expandedSize;
+//    for(int i = 0 ; i < 2 * oldSize ; i++){
+//        newArray[i] = new RankTree<Key,Data>;
+//    }
+//    for (int i = 0; i < oldSize; ++i) {
+//
+//        try {
+//            auto *arr = new Key [newArray[i]->getSize()];
+//            newArray[i]->ReverseInOrderArrayKeys(arr);
+//            for (int j = 0; j < newArray[i]->getSize(); j++) {
+//                int newIndex = HashFunction(arr[j]);
+//                Data temp=m_TreeArr[i]->Find(arr[j]);
+//                newArray[newIndex]->Insert(arr[j], temp);
+//                m_TreeArr[i]->Remove(arr[j]);
+//            }
+//            delete[] arr;
+//        }
+//        catch (const std::bad_alloc &) {
+//            delete[] newArray;
+//            throw;
+//        }
+//    }
+//        for(int i = 0 ; i < oldSize ; i++){
+//            delete m_TreeArr[i];
+//        }
+//
+//        delete[] m_TreeArr; // check if this is the correct way
+//        m_TreeArr = newArray;
+//        m_stressFactor = (double) m_sizeElem / m_sizeArr;
+//    }
 
 template<class Key,class Data>
 bool HashTable<Key,Data>::insertToTable(Key key,Data data){
