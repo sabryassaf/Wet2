@@ -232,6 +232,15 @@ StatusType RecordsCompany::addPrize(int c_id1, int c_id2, double amount)
     {
         return StatusType::INVALID_INPUT;
     }
+    if (m_VipCustomersTree->Find(c_id1))
+    {
+        c_id1--;
+    }
+    if (m_VipCustomersTree->Find(c_id2))
+    {
+        c_id2--;
+    }
+
     if (RecordsCompany::addPrizeAUX(c_id2, amount, this->m_VipCustomersTree->getRoot(), 0) == StatusType::SUCCESS &&
         RecordsCompany::addPrizeAUX(c_id1 - 1, -amount, this->m_VipCustomersTree->getRoot(), 0) == StatusType::SUCCESS)
         return StatusType::SUCCESS;
