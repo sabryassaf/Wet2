@@ -82,12 +82,23 @@ public:
         }
         /// in the second time we hold the sum of parameters in the search path till the current node without it and we delete it from the total height;
         int reverseSub = 0;
+        int tempSub;
+//        while (root != m_parent[r_id])
+//        {
+//            tempNext = m_parent[temp];
+//            tempSub = m_recordStocks[temp]->m_r;
+//            m_parent[temp] = root;
+//            m_recordStocks[temp]->m_r = totalHeight-reverseSub;
+//            reverseSub+= tempSub;
+//            root = tempNext;
+//        }
         while (root != m_parent[r_id])
         {
             int tempNext = m_parent[r_id];
             m_parent[r_id] = root;
+            int tmp = m_recordStocks[r_id]->m_r;
             m_recordStocks[r_id]->m_r = totalHeight - reverseSub;
-            reverseSub += m_recordStocks[r_id]->m_r;
+            reverseSub += tmp;
             r_id = tempNext;
         }
         return root;

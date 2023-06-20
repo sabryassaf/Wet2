@@ -17,7 +17,7 @@ public:
     int m_column;
 //    int m_height;
 
-    Record(int id) : m_stocks(0), m_sales(0), m_column(id), m_r(0)
+    Record(int id) : m_sales(0), m_stocks(0), m_r(0), m_column(id)
     {}
 
 
