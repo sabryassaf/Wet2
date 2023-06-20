@@ -165,9 +165,9 @@ StatusType RecordsCompany::addPrizeAUX(int c_id, double amount, AVLNode<int, Cus
         if (c_id == node->getKey())
         {
             node->UpdateExtra(amount);
-            if (node->getLeftChild())
+            if (node->getRightChild())
             {
-                node->getLeftChild()->UpdateExtra(-amount);
+                node->getRightChild()->UpdateExtra(-amount);
                 return StatusType::SUCCESS;
             }
             return StatusType::SUCCESS;
@@ -184,10 +184,10 @@ StatusType RecordsCompany::addPrizeAUX(int c_id, double amount, AVLNode<int, Cus
         }
         if (c_id == node->getKey())
         {
-            node->UpdateExtra(amount);
-            if (node->getLeftChild())
+//            node->UpdateExtra(amount);
+            if (node->getRightChild())
             {
-                node->getLeftChild()->UpdateExtra(-amount);
+                node->getRightChild()->UpdateExtra(-amount);
                 return StatusType::SUCCESS;
             }
             return StatusType::SUCCESS;
