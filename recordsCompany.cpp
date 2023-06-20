@@ -165,11 +165,12 @@ StatusType RecordsCompany::addPrizeAUX(int c_id, double amount, AVLNode<int, Cus
         if (c_id == node->getKey())
         {
             node->UpdateExtra(amount);
-            if (node->getRightChild())
+            if (node->getLeftChild())
             {
-                node->getRightChild()->UpdateExtra(-amount);
+                node->getLeftChild()->UpdateExtra(-amount);
                 return StatusType::SUCCESS;
             }
+            return StatusType::SUCCESS;
         }
         return addPrizeAUX(c_id, amount, node->getLeftChild(), 0);
 
@@ -184,29 +185,6 @@ StatusType RecordsCompany::addPrizeAUX(int c_id, double amount, AVLNode<int, Cus
         if (c_id == node->getKey())
         {
             node->UpdateExtra(amount);
-            if (node->getRightChild())
-            {
-                node->getRightChild()->UpdateExtra(-amount);
-                return StatusType::SUCCESS;
-            }
-        }
-        if (c_id < node->getKey())
-        {
-            node->UpdateExtra(-amount);
-            return addPrizeAUX(c_id, amount, node->getLeftChild(), 3);
-
-        }
-    }
-    if (condition == 3)
-    {
-        if (c_id > node->getKey())
-        {
-            node->UpdateExtra(amount);
-            return addPrizeAUX(c_id, amount, node->getRightChild(), 1);
-        }
-        if (c_id == node->getKey())
-        {
-            node->UpdateExtra(amount);
             if (node->getLeftChild())
             {
                 node->getLeftChild()->UpdateExtra(-amount);
@@ -216,9 +194,33 @@ StatusType RecordsCompany::addPrizeAUX(int c_id, double amount, AVLNode<int, Cus
         }
         if (c_id < node->getKey())
         {
+            node->UpdateExtra(-amount);
             return addPrizeAUX(c_id, amount, node->getLeftChild(), 0);
+
         }
     }
+//    if (condition == 3)
+//    {
+//        if (c_id > node->getKey())
+//        {
+//            node->UpdateExtra(amount);
+//            return addPrizeAUX(c_id, amount, node->getRightChild(), 1);
+//        }
+//        if (c_id == node->getKey())
+//        {
+//            node->UpdateExtra(amount);
+//            if (node->getLeftChild())
+//            {
+//                node->getLeftChild()->UpdateExtra(-amount);
+//                return StatusType::SUCCESS;
+//            }
+//            return StatusType::SUCCESS;
+//        }
+//        if (c_id < node->getKey())
+//        {
+//            return addPrizeAUX(c_id, amount, node->getLeftChild(), 0);
+//        }
+//    }
     return StatusType::FAILURE;
 
 }
