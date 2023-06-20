@@ -242,7 +242,7 @@ StatusType RecordsCompany::addPrize(int c_id1, int c_id2, double amount)
     }
 
     if (RecordsCompany::addPrizeAUX(c_id2, amount, this->m_VipCustomersTree->getRoot(), 0) == StatusType::SUCCESS &&
-        RecordsCompany::addPrizeAUX(c_id1 - 1, -amount, this->m_VipCustomersTree->getRoot(), 0) == StatusType::SUCCESS)
+        RecordsCompany::addPrizeAUX(c_id1 , -amount, this->m_VipCustomersTree->getRoot(), 0) == StatusType::SUCCESS)
         return StatusType::SUCCESS;
     return StatusType::FAILURE;
 
@@ -250,7 +250,7 @@ StatusType RecordsCompany::addPrize(int c_id1, int c_id2, double amount)
 
 StatusType RecordsCompany::putOnTop(int r_id1, int r_id2)
 {
-    if (r_id1 == 0 || r_id2 == 0)
+    if (r_id1 < 0 || r_id2 < 0)
     {
         return StatusType::INVALID_INPUT;
     }
